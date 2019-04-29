@@ -1,0 +1,980 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title></title>
+          <meta name="description" content="" />
+          <meta name="keywords" content="" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../lib/index.js"></script>
+      <script type="text/javascript" src="../../index.js"></script>
+      <script type="text/javascript" src="../../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../';
+      </script>
+    
+        </head>
+        <body>
+      <div id="search">
+        <span id="doc-title"><span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="index.html#_root_" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../index.html"><span class="name">root</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.controllers" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="controllers"></a><a id="controllers:controllers"></a>
+      <span class="permalink">
+      <a href="index.html#controllers" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../index.html"><span class="name">controllers</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="controllers.BDDpackage" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="BDDpackage"></a><a id="BDDpackage:BDDpackage"></a>
+      <span class="permalink">
+      <a href="../controllers/index.html#BDDpackage" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="index.html"><span class="name">BDDpackage</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="controllers">controllers</a></dd></dl></div>
+    </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="" title=""></a>
+                        <a href="" title="">BDD</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="Categorie.html" title=""></a>
+                        <a href="Categorie.html" title="">Categorie</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="Limite.html" title=""></a>
+                        <a href="Limite.html" title="">Limite</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="Modele_transaction.html" title=""></a>
+                        <a href="Modele_transaction.html" title="">Modele_transaction</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="Pays.html" title=""></a>
+                        <a href="Pays.html" title="">Pays</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="Recurrence.html" title=""></a>
+                        <a href="Recurrence.html" title="">Recurrence</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="SousCategorie.html" title=""></a>
+                        <a href="SousCategorie.html" title="">SousCategorie</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="Statut.html" title=""></a>
+                        <a href="Statut.html" title="">Statut</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="Transaction.html" title=""></a>
+                        <a href="Transaction.html" title="">Transaction</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="Utilisateur.html" title=""></a>
+                        <a href="Utilisateur.html" title="">Utilisateur</a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="class type">
+      <div id="definition">
+        <div class="big-circle class">c</div>
+        <p id="owner"><a href="../index.html" class="extype" name="controllers">controllers</a>.<a href="index.html" class="extype" name="controllers.BDDpackage">BDDpackage</a></p>
+        <h1>BDD<span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"></span></h3>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">BDD</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
+            <ol>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
+            </ol>
+          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="controllers.BDDpackage.BDD"><span>BDD</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="controllers.BDDpackage.BDD#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(url:String,user:String,password:String):controllers.BDDpackage.BDD"></a><a id="&lt;init&gt;:BDD"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#&lt;init&gt;(url:String,user:String,password:String):controllers.BDDpackage.BDD" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">BDD</span><span class="params">(<span name="url">url: <span class="extype" name="java.lang.String">String</span></span>, <span name="user">user: <span class="extype" name="java.lang.String">String</span></span>, <span name="password">password: <span class="extype" name="java.lang.String">String</span></span>)</span>
+      </span>
+      
+      
+    </li><li name="controllers.BDDpackage.BDD#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():controllers.BDDpackage.BDD"></a><a id="&lt;init&gt;:BDD"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#&lt;init&gt;():controllers.BDDpackage.BDD" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">BDD</span><span class="params">()</span>
+      </span>
+      
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        <div class="values members">
+              <h3>Value Members</h3>
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#CategorieByID" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CategorieByID(CategorieID:Int):controllers.BDDpackage.Categorie"></a><a id="CategorieByID(Int):Categorie"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#CategorieByID(CategorieID:Int):controllers.BDDpackage.Categorie" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CategorieByID</span><span class="params">(<span name="CategorieID">CategorieID: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="Categorie.html" class="extype" name="controllers.BDDpackage.Categorie">Categorie</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Find categorie by his/her ID
+</p>
+    </li><li name="controllers.BDDpackage.BDD#DixDerniersMouvements" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="DixDerniersMouvements(userID:Int):java.util.ArrayList[Integer]"></a><a id="DixDerniersMouvements(Int):ArrayList[Integer]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#DixDerniersMouvements(userID:Int):java.util.ArrayList[Integer]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DixDerniersMouvements</span><span class="params">(<span name="userID">userID: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<span class="extype" name="java.lang.Integer">Integer</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Renvoie les 10 dernieres depenses tout confondu
+</p><div class="fullcomment"><div class="comment cmt"><p>Renvoie les 10 dernieres depenses tout confondu
+</p></div><dl class="paramcmts block"><dt class="param">userID</dt><dd class="cmt"><p>ID de l'utilisateur</p></dd><dt>returns</dt><dd class="cmt"><p>retourne un tableau 2 dimensions avec 2 arrayList, la 1ere avec la categorie, la 2eme avec le montant</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#UtilisateurByID" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UtilisateurByID(UtilisateurID:Int):controllers.BDDpackage.Utilisateur"></a><a id="UtilisateurByID(Int):Utilisateur"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#UtilisateurByID(UtilisateurID:Int):controllers.BDDpackage.Utilisateur" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">UtilisateurByID</span><span class="params">(<span name="UtilisateurID">UtilisateurID: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="Utilisateur.html" class="extype" name="controllers.BDDpackage.Utilisateur">Utilisateur</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Find users by his/her ID
+</p>
+    </li><li name="controllers.BDDpackage.BDD#addExpense" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addExpense(userID:Int,valeur:Int,sousCategorie:String,recurrence:String,note:String):Int"></a><a id="addExpense(Int,Int,String,String,String):Int"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#addExpense(userID:Int,valeur:Int,sousCategorie:String,recurrence:String,note:String):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addExpense</span><span class="params">(<span name="userID">userID: <span class="extype" name="scala.Int">Int</span></span>, <span name="valeur">valeur: <span class="extype" name="scala.Int">Int</span></span>, <span name="sousCategorie">sousCategorie: <span class="extype" name="java.lang.String">String</span></span>, <span name="recurrence">recurrence: <span class="extype" name="java.lang.String">String</span></span>, <span name="note">note: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Permet d'ajouter une depense
+</p><div class="fullcomment"><div class="comment cmt"><p>Permet d'ajouter une depense
+</p></div><dl class="paramcmts block"><dt class="param">userID</dt><dd class="cmt"><p>ID de l'utilisateur</p></dd><dt class="param">valeur</dt><dd class="cmt"><p>valeur de le depense</p></dd><dt class="param">sousCategorie</dt><dd class="cmt"><p>sous categorie</p></dd><dt class="param">recurrence</dt><dd class="cmt"><p>recurrence du payement</p></dd><dt class="param">note</dt><dd class="cmt"><p>note de l'utilisateur concernant le payement</p></dd><dt>returns</dt><dd class="cmt"><p>retoure 0 s'il n'y a pas eu de probleme, -1 autrement</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#addIncome" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addIncome(userID:Int,valeur:Int,sousCategorie:String,recurrence:String,note:String):Int"></a><a id="addIncome(Int,Int,String,String,String):Int"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#addIncome(userID:Int,valeur:Int,sousCategorie:String,recurrence:String,note:String):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addIncome</span><span class="params">(<span name="userID">userID: <span class="extype" name="scala.Int">Int</span></span>, <span name="valeur">valeur: <span class="extype" name="scala.Int">Int</span></span>, <span name="sousCategorie">sousCategorie: <span class="extype" name="java.lang.String">String</span></span>, <span name="recurrence">recurrence: <span class="extype" name="java.lang.String">String</span></span>, <span name="note">note: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Permet d'ajouter un revenu
+</p><div class="fullcomment"><div class="comment cmt"><p>Permet d'ajouter un revenu
+</p></div><dl class="paramcmts block"><dt class="param">userID</dt><dd class="cmt"><p>ID de l'utilisateur</p></dd><dt class="param">valeur</dt><dd class="cmt"><p>valeur du revenu</p></dd><dt class="param">sousCategorie</dt><dd class="cmt"><p>sous categorie</p></dd><dt class="param">recurrence</dt><dd class="cmt"><p>recurrence du payement</p></dd><dt class="param">note</dt><dd class="cmt"><p>note de l'utilisateur concernant le payement</p></dd><dt>returns</dt><dd class="cmt"><p>retoure 0 s'il n'y a pas eu de probleme, -1 autrement</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#addUser" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="addUser(prenom:String,nom:String,email:String,pseudo:String,mdp:String,genre:String,anniversaire:String,statut:Int,Pays:Int,Option:Int):Int"></a><a id="addUser(String,String,String,String,String,String,String,Int,Int,Int):Int"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#addUser(prenom:String,nom:String,email:String,pseudo:String,mdp:String,genre:String,anniversaire:String,statut:Int,Pays:Int,Option:Int):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addUser</span><span class="params">(<span name="prenom">prenom: <span class="extype" name="java.lang.String">String</span></span>, <span name="nom">nom: <span class="extype" name="java.lang.String">String</span></span>, <span name="email">email: <span class="extype" name="java.lang.String">String</span></span>, <span name="pseudo">pseudo: <span class="extype" name="java.lang.String">String</span></span>, <span name="mdp">mdp: <span class="extype" name="java.lang.String">String</span></span>, <span name="genre">genre: <span class="extype" name="java.lang.String">String</span></span>, <span name="anniversaire">anniversaire: <span class="extype" name="java.lang.String">String</span></span>, <span name="statut">statut: <span class="extype" name="scala.Int">Int</span></span>, <span name="Pays">Pays: <span class="extype" name="scala.Int">Int</span></span>, <span name="Option">Option: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Permet de gérer l'enregistrement d'un utilisateur
+</p>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#checkConnectionGetId" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="checkConnectionGetId(passwd:String,userN:String):Int"></a><a id="checkConnectionGetId(String,String):Int"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#checkConnectionGetId(passwd:String,userN:String):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">checkConnectionGetId</span><span class="params">(<span name="passwd">passwd: <span class="extype" name="java.lang.String">String</span></span>, <span name="userN">userN: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Check COnnection and get ID back
+</p><div class="fullcomment"><div class="comment cmt"><p>Check COnnection and get ID back
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"></span></dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#display_Categories" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="display_Categories():java.util.ArrayList[controllers.BDDpackage.Categorie]"></a><a id="display_Categories():ArrayList[Categorie]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#display_Categories():java.util.ArrayList[controllers.BDDpackage.Categorie]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">display_Categories</span><span class="params">()</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<a href="Categorie.html" class="extype" name="controllers.BDDpackage.Categorie">Categorie</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Display Categorie
+</p><div class="fullcomment"><div class="comment cmt"><p>Display Categorie
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"></span></dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#getSousCategorieID" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSousCategorieID(sousCategorie:String):Int"></a><a id="getSousCategorieID(String):Int"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getSousCategorieID(sousCategorie:String):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSousCategorieID</span><span class="params">(<span name="sousCategorie">sousCategorie: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Renvoie l'ID d'une sous categorie suivant son nom
+</p><div class="fullcomment"><div class="comment cmt"><p>Renvoie l'ID d'une sous categorie suivant son nom
+</p></div><dl class="paramcmts block"><dt class="param">sousCategorie</dt><dd class="cmt"><p>nom de la sous categorie</p></dd><dt>returns</dt><dd class="cmt"><p>l'ID de la sous categorie</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#getSousCategorieMonthly" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getSousCategorieMonthly(userID:Int,sousCatID:Int):java.util.ArrayList[Integer]"></a><a id="getSousCategorieMonthly(Int,Int):ArrayList[Integer]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getSousCategorieMonthly(userID:Int,sousCatID:Int):java.util.ArrayList[Integer]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSousCategorieMonthly</span><span class="params">(<span name="userID">userID: <span class="extype" name="scala.Int">Int</span></span>, <span name="sousCatID">sousCatID: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<span class="extype" name="java.lang.Integer">Integer</span>]</span>
+      </span>
+      
+      
+    </li><li name="controllers.BDDpackage.BDD#getTenLastSousCategorie" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getTenLastSousCategorie(userID:Int,sousCatID:Int):java.util.ArrayList[Integer]"></a><a id="getTenLastSousCategorie(Int,Int):ArrayList[Integer]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getTenLastSousCategorie(userID:Int,sousCatID:Int):java.util.ArrayList[Integer]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getTenLastSousCategorie</span><span class="params">(<span name="userID">userID: <span class="extype" name="scala.Int">Int</span></span>, <span name="sousCatID">sousCatID: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<span class="extype" name="java.lang.Integer">Integer</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Renvoie les 10 dernieres depenses toutes categories confondues
+</p><div class="fullcomment"><div class="comment cmt"><p>Renvoie les 10 dernieres depenses toutes categories confondues
+</p></div><dl class="paramcmts block"><dt class="param">userID</dt><dd class="cmt"><p>ID de l'utilisateur</p></dd><dt class="param">sousCatID</dt><dd class="cmt"><p>ID de la sous categorie</p></dd><dt>returns</dt><dd class="cmt"><p>retourne une liste contenant les 10 dernieres transactions de la sous categorie</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#getUser" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getUser():String"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getUser():String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getUser</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      
+      
+    </li><li name="controllers.BDDpackage.BDD#get_Categorie" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="get_Categorie(nom:String):controllers.BDDpackage.Categorie"></a><a id="get_Categorie(String):Categorie"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#get_Categorie(nom:String):controllers.BDDpackage.Categorie" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">get_Categorie</span><span class="params">(<span name="nom">nom: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <a href="Categorie.html" class="extype" name="controllers.BDDpackage.Categorie">Categorie</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Find categorie by his/her name
+</p>
+    </li><li name="controllers.BDDpackage.BDD#get_Pays" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="get_Pays():java.util.ArrayList[controllers.BDDpackage.Pays]"></a><a id="get_Pays():ArrayList[Pays]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#get_Pays():java.util.ArrayList[controllers.BDDpackage.Pays]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">get_Pays</span><span class="params">()</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<a href="Pays.html" class="extype" name="controllers.BDDpackage.Pays">Pays</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Get all Pays
+</p><div class="fullcomment"><div class="comment cmt"><p>Get all Pays
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"></span></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#get_Sous_categorie" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="get_Sous_categorie(categorie_id:Int):java.util.ArrayList[controllers.BDDpackage.SousCategorie]"></a><a id="get_Sous_categorie(Int):ArrayList[SousCategorie]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#get_Sous_categorie(categorie_id:Int):java.util.ArrayList[controllers.BDDpackage.SousCategorie]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">get_Sous_categorie</span><span class="params">(<span name="categorie_id">categorie_id: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<a href="SousCategorie.html" class="extype" name="controllers.BDDpackage.SousCategorie">SousCategorie</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Get Sous_categorie by
+</p><div class="fullcomment"><div class="comment cmt"><p>Get Sous_categorie by
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"></span></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#get_Statut" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="get_Statut():java.util.ArrayList[controllers.BDDpackage.Statut]"></a><a id="get_Statut():ArrayList[Statut]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#get_Statut():java.util.ArrayList[controllers.BDDpackage.Statut]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">get_Statut</span><span class="params">()</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<a href="Statut.html" class="extype" name="controllers.BDDpackage.Statut">Statut</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Get all Pays
+</p><div class="fullcomment"><div class="comment cmt"><p>Get all Pays
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"></span></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#get_Type_transaction" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="get_Type_transaction():java.util.ArrayList[String]"></a><a id="get_Type_transaction():ArrayList[String]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#get_Type_transaction():java.util.ArrayList[String]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">get_Type_transaction</span><span class="params">()</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<span class="extype" name="java.lang.String">String</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Get Type de transaction in BD
+</p><div class="fullcomment"><div class="comment cmt"><p>Get Type de transaction in BD
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"></span></dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#insert_Sous_categorie" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="insert_Sous_categorie(sousCategorie:controllers.BDDpackage.SousCategorie):Boolean"></a><a id="insert_Sous_categorie(SousCategorie):Boolean"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#insert_Sous_categorie(sousCategorie:controllers.BDDpackage.SousCategorie):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">insert_Sous_categorie</span><span class="params">(<span name="sousCategorie">sousCategorie: <a href="SousCategorie.html" class="extype" name="controllers.BDDpackage.SousCategorie">SousCategorie</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Permet d'insérer une nouvelle Sous_categorie à la BDD
+</p>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#updateOptionUser" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="updateOptionUser(userId:Int,OptionId:Int):Boolean"></a><a id="updateOptionUser(Int,Int):Boolean"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#updateOptionUser(userId:Int,OptionId:Int):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">updateOptionUser</span><span class="params">(<span name="userId">userId: <span class="extype" name="scala.Int">Int</span></span>, <span name="OptionId">OptionId: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li>
+              </ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+    </body>
+          </div>
+        </div>
+      </div>
+    </body>
+      </html>
