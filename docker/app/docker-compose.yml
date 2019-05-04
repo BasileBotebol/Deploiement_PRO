@@ -11,9 +11,12 @@ services:
     ports:
       - 5432:5432
   web:
+    restart: always
+    depends_on:
+    - postgres
     build: .
     ports:
-    - 9000:9000
+    - 80:9000
     volumes:
     - ~/.ivy2:/root/.ivy2
     - ~/.sbt:/root/.sbt
