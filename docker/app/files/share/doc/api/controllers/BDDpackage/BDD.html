@@ -103,8 +103,8 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="controllers">controllers</a></dd></dl></div>
     </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="" title=""></a>
-                        <a href="" title="">BDD</a>
+                        <a class="class" href="" title="Base de donnée."></a>
+                        <a href="" title="Base de donnée.">BDD</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="class" href="Categorie.html" title=""></a>
@@ -169,7 +169,7 @@
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Base de donnée.</p></div><dl class="attributes block"> <dt>Version</dt><dd><p>1.0</p></dd><dt>Since</dt><dd><p>1.0</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -344,7 +344,7 @@
       <p class="shortcomment cmt">Renvoie les 10 dernieres depenses tout confondu
 </p><div class="fullcomment"><div class="comment cmt"><p>Renvoie les 10 dernieres depenses tout confondu
 </p></div><dl class="paramcmts block"><dt class="param">userID</dt><dd class="cmt"><p>ID de l'utilisateur</p></dd><dt>returns</dt><dd class="cmt"><p>retourne un tableau 2 dimensions avec 2 arrayList, la 1ere avec la categorie, la 2eme avec le montant</p></dd></dl></div>
-    </li><li name="controllers.BDDpackage.BDD#UtilisateurByID" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="controllers.BDDpackage.BDD#UtilisateurByID" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="UtilisateurByID(UtilisateurID:Int):controllers.BDDpackage.Utilisateur"></a><a id="UtilisateurByID(Int):Utilisateur"></a>
       <span class="permalink">
       <a href="../../controllers/BDDpackage/BDD.html#UtilisateurByID(UtilisateurID:Int):controllers.BDDpackage.Utilisateur" title="Permalink">
@@ -360,7 +360,8 @@
       </span>
       
       <p class="shortcomment cmt">Find users by his/her ID
-</p>
+</p><div class="fullcomment"><div class="comment cmt"><p>Find users by his/her ID
+</p></div><dl class="paramcmts block"><dt class="param">UtilisateurID</dt><dd class="cmt"><p>l'id de l'utilisateur</p></dd><dt>returns</dt><dd class="cmt"><p>l'Utilisateur trouvé, ou null si pas trouvé</p></dd></dl></div>
     </li><li name="controllers.BDDpackage.BDD#addExpense" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="addExpense(userID:Int,valeur:Int,sousCategorie:String,recurrence:String,note:String):Int"></a><a id="addExpense(Int,Int,String,String,String):Int"></a>
       <span class="permalink">
@@ -397,10 +398,10 @@
       <p class="shortcomment cmt">Permet d'ajouter un revenu
 </p><div class="fullcomment"><div class="comment cmt"><p>Permet d'ajouter un revenu
 </p></div><dl class="paramcmts block"><dt class="param">userID</dt><dd class="cmt"><p>ID de l'utilisateur</p></dd><dt class="param">valeur</dt><dd class="cmt"><p>valeur du revenu</p></dd><dt class="param">sousCategorie</dt><dd class="cmt"><p>sous categorie</p></dd><dt class="param">recurrence</dt><dd class="cmt"><p>recurrence du payement</p></dd><dt class="param">note</dt><dd class="cmt"><p>note de l'utilisateur concernant le payement</p></dd><dt>returns</dt><dd class="cmt"><p>retoure 0 s'il n'y a pas eu de probleme, -1 autrement</p></dd></dl></div>
-    </li><li name="controllers.BDDpackage.BDD#addUser" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="addUser(prenom:String,nom:String,email:String,pseudo:String,mdp:String,genre:String,anniversaire:String,statut:Int,Pays:Int,Option:Int):Int"></a><a id="addUser(String,String,String,String,String,String,String,Int,Int,Int):Int"></a>
+    </li><li name="controllers.BDDpackage.BDD#addMovement" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addMovement(userID:Int,valeur:Double,idSousCategorie:Int,recurrenceId:Int,note:String,idTypeTrans:Int):Int"></a><a id="addMovement(Int,Double,Int,Int,String,Int):Int"></a>
       <span class="permalink">
-      <a href="../../controllers/BDDpackage/BDD.html#addUser(prenom:String,nom:String,email:String,pseudo:String,mdp:String,genre:String,anniversaire:String,statut:Int,Pays:Int,Option:Int):Int" title="Permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#addMovement(userID:Int,valeur:Double,idSousCategorie:Int,recurrenceId:Int,note:String,idTypeTrans:Int):Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -409,7 +410,25 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">addUser</span><span class="params">(<span name="prenom">prenom: <span class="extype" name="java.lang.String">String</span></span>, <span name="nom">nom: <span class="extype" name="java.lang.String">String</span></span>, <span name="email">email: <span class="extype" name="java.lang.String">String</span></span>, <span name="pseudo">pseudo: <span class="extype" name="java.lang.String">String</span></span>, <span name="mdp">mdp: <span class="extype" name="java.lang.String">String</span></span>, <span name="genre">genre: <span class="extype" name="java.lang.String">String</span></span>, <span name="anniversaire">anniversaire: <span class="extype" name="java.lang.String">String</span></span>, <span name="statut">statut: <span class="extype" name="scala.Int">Int</span></span>, <span name="Pays">Pays: <span class="extype" name="scala.Int">Int</span></span>, <span name="Option">Option: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">addMovement</span><span class="params">(<span name="userID">userID: <span class="extype" name="scala.Int">Int</span></span>, <span name="valeur">valeur: <span class="extype" name="scala.Double">Double</span></span>, <span name="idSousCategorie">idSousCategorie: <span class="extype" name="scala.Int">Int</span></span>, <span name="recurrenceId">recurrenceId: <span class="extype" name="scala.Int">Int</span></span>, <span name="note">note: <span class="extype" name="java.lang.String">String</span></span>, <span name="idTypeTrans">idTypeTrans: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Permet d'ajouter une depense
+</p><div class="fullcomment"><div class="comment cmt"><p>Permet d'ajouter une depense
+</p></div><dl class="paramcmts block"><dt class="param">userID</dt><dd class="cmt"><p>ID de l'utilisateur</p></dd><dt class="param">valeur</dt><dd class="cmt"><p>valeur de le depense</p></dd><dt class="param">idSousCategorie</dt><dd class="cmt"><p>id de sous categorie</p></dd><dt class="param">recurrenceId</dt><dd class="cmt"><p>id de la recurrence du payement</p></dd><dt class="param">note</dt><dd class="cmt"><p>note de l'utilisateur concernant le payement</p></dd><dt class="param">idTypeTrans</dt><dd class="cmt"><p>id de du type de transaction</p></dd><dt>returns</dt><dd class="cmt"><p>retoure 0 s'il n'y a pas eu de probleme, -1 autrement</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#addUser" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="addUser(prenom:String,nom:String,email:String,pseudo:String,mdp:String,genre:String,anniversaire:String,statut:Int,Pays:Int,Option:Int,solde:Double):Int"></a><a id="addUser(String,String,String,String,String,String,String,Int,Int,Int,Double):Int"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#addUser(prenom:String,nom:String,email:String,pseudo:String,mdp:String,genre:String,anniversaire:String,statut:Int,Pays:Int,Option:Int,solde:Double):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addUser</span><span class="params">(<span name="prenom">prenom: <span class="extype" name="java.lang.String">String</span></span>, <span name="nom">nom: <span class="extype" name="java.lang.String">String</span></span>, <span name="email">email: <span class="extype" name="java.lang.String">String</span></span>, <span name="pseudo">pseudo: <span class="extype" name="java.lang.String">String</span></span>, <span name="mdp">mdp: <span class="extype" name="java.lang.String">String</span></span>, <span name="genre">genre: <span class="extype" name="java.lang.String">String</span></span>, <span name="anniversaire">anniversaire: <span class="extype" name="java.lang.String">String</span></span>, <span name="statut">statut: <span class="extype" name="scala.Int">Int</span></span>, <span name="Pays">Pays: <span class="extype" name="scala.Int">Int</span></span>, <span name="Option">Option: <span class="extype" name="scala.Int">Int</span></span>, <span name="solde">solde: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       
       <p class="shortcomment cmt">Permet de gérer l'enregistrement d'un utilisateur
@@ -430,6 +449,24 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#belongToUser" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="belongToUser(sousCat_id:Int,user_id:Int):Boolean"></a><a id="belongToUser(Int,Int):Boolean"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#belongToUser(sousCat_id:Int,user_id:Int):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">belongToUser</span><span class="params">(<span name="sousCat_id">sousCat_id: <span class="extype" name="scala.Int">Int</span></span>, <span name="user_id">user_id: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Get Sous_categorie by
+</p><div class="fullcomment"><div class="comment cmt"><p>Get Sous_categorie by
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"></span></dd></dl></div>
     </li><li name="controllers.BDDpackage.BDD#checkConnectionGetId" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="checkConnectionGetId(passwd:String,userN:String):Int"></a><a id="checkConnectionGetId(String,String):Int"></a>
       <span class="permalink">
@@ -544,6 +581,22 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#getAllCategories" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getAllCategories():java.util.ArrayList[controllers.BDDpackage.Categorie]"></a><a id="getAllCategories():ArrayList[Categorie]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getAllCategories():java.util.ArrayList[controllers.BDDpackage.Categorie]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAllCategories</span><span class="params">()</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<a href="Categorie.html" class="extype" name="controllers.BDDpackage.Categorie">Categorie</a>]</span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
@@ -563,6 +616,40 @@
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#getRecurrence" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getRecurrence():java.util.ArrayList[controllers.BDDpackage.Recurrence]"></a><a id="getRecurrence():ArrayList[Recurrence]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getRecurrence():java.util.ArrayList[controllers.BDDpackage.Recurrence]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getRecurrence</span><span class="params">()</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<a href="Recurrence.html" class="extype" name="controllers.BDDpackage.Recurrence">Recurrence</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Récupère les diffèrentes récurences
+</p><div class="fullcomment"><div class="comment cmt"><p>Récupère les diffèrentes récurences
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>une ArrayList&lt;Recurrence&gt; contenant toutes les récurences de la base de donnée</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#getSoldeById" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getSoldeById(userId:Int):Double"></a><a id="getSoldeById(Int):Double"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getSoldeById(userId:Int):Double" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSoldeById</span><span class="params">(<span name="userId">userId: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      
+      
     </li><li name="controllers.BDDpackage.BDD#getSousCategorieID" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getSousCategorieID(sousCategorie:String):Int"></a><a id="getSousCategorieID(String):Int"></a>
       <span class="permalink">
@@ -740,9 +827,9 @@
               
         </dd></dl></div>
     </li><li name="controllers.BDDpackage.BDD#insert_Sous_categorie" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="insert_Sous_categorie(sousCategorie:controllers.BDDpackage.SousCategorie):Boolean"></a><a id="insert_Sous_categorie(SousCategorie):Boolean"></a>
+      <a id="insert_Sous_categorie(sousCategorie:controllers.BDDpackage.SousCategorie,idUser:Int):Boolean"></a><a id="insert_Sous_categorie(SousCategorie,Int):Boolean"></a>
       <span class="permalink">
-      <a href="../../controllers/BDDpackage/BDD.html#insert_Sous_categorie(sousCategorie:controllers.BDDpackage.SousCategorie):Boolean" title="Permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#insert_Sous_categorie(sousCategorie:controllers.BDDpackage.SousCategorie,idUser:Int):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -751,7 +838,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">insert_Sous_categorie</span><span class="params">(<span name="sousCategorie">sousCategorie: <a href="SousCategorie.html" class="extype" name="controllers.BDDpackage.SousCategorie">SousCategorie</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">insert_Sous_categorie</span><span class="params">(<span name="sousCategorie">sousCategorie: <a href="SousCategorie.html" class="extype" name="controllers.BDDpackage.SousCategorie">SousCategorie</a></span>, <span name="idUser">idUser: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       
       <p class="shortcomment cmt">Permet d'insérer une nouvelle Sous_categorie à la BDD
@@ -858,7 +945,7 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="controllers.BDDpackage.BDD#updateOptionUser" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="controllers.BDDpackage.BDD#updateOptionUser" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="updateOptionUser(userId:Int,OptionId:Int):Boolean"></a><a id="updateOptionUser(Int,Int):Boolean"></a>
       <span class="permalink">
       <a href="../../controllers/BDDpackage/BDD.html#updateOptionUser(userId:Int,OptionId:Int):Boolean" title="Permalink">
@@ -873,7 +960,39 @@
         <span class="name">updateOptionUser</span><span class="params">(<span name="userId">userId: <span class="extype" name="scala.Int">Int</span></span>, <span name="OptionId">OptionId: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       
+      <p class="shortcomment cmt">Met à jour les options de l'utilisateur</p><div class="fullcomment"><div class="comment cmt"><p>Met à jour les options de l'utilisateur</p></div><dl class="paramcmts block"><dt class="param">userId</dt><dd class="cmt"><p>ID de l'utilisateur à modifier</p></dd><dt class="param">OptionId</dt><dd class="cmt"><p>Id de l'option à modifier</p></dd><dt>returns</dt><dd class="cmt"><p>true si l'option à été modifié dans l'utilisateur, false sinon</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#updateSousCatPerso" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="updateSousCatPerso(id_sous_cat:Int,id_user:Int):Unit"></a><a id="updateSousCatPerso(Int,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#updateSousCatPerso(id_sous_cat:Int,id_user:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">updateSousCatPerso</span><span class="params">(<span name="id_sous_cat">id_sous_cat: <span class="extype" name="scala.Int">Int</span></span>, <span name="id_user">id_user: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
       
+      
+    </li><li name="controllers.BDDpackage.BDD#updateUser" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="updateUser(userId:Int,prenom:String,nom:String,email:String,pseudo:String,genre:Boolean,anniversaire:String,statut_id:Int,pays_id:Int):Boolean"></a><a id="updateUser(Int,String,String,String,String,Boolean,String,Int,Int):Boolean"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#updateUser(userId:Int,prenom:String,nom:String,email:String,pseudo:String,genre:Boolean,anniversaire:String,statut_id:Int,pays_id:Int):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">updateUser</span><span class="params">(<span name="userId">userId: <span class="extype" name="scala.Int">Int</span></span>, <span name="prenom">prenom: <span class="extype" name="java.lang.String">String</span></span>, <span name="nom">nom: <span class="extype" name="java.lang.String">String</span></span>, <span name="email">email: <span class="extype" name="java.lang.String">String</span></span>, <span name="pseudo">pseudo: <span class="extype" name="java.lang.String">String</span></span>, <span name="genre">genre: <span class="extype" name="java.lang.Boolean">Boolean</span></span>, <span name="anniversaire">anniversaire: <span class="extype" name="java.lang.String">String</span></span>, <span name="statut_id">statut_id: <span class="extype" name="scala.Int">Int</span></span>, <span name="pays_id">pays_id: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Permet de mettre à jour le profil d'un utilisateur, sans le mot de passe, les options ou le solde</p><div class="fullcomment"><div class="comment cmt"><p>Permet de mettre à jour le profil d'un utilisateur, sans le mot de passe, les options ou le solde</p></div><dl class="paramcmts block"><dt class="param">userId</dt><dd class="cmt"><p>ID de l'utilisateur à modifier</p></dd><dt class="param">prenom</dt><dd class="cmt"><p>prénom de l'utilisateur</p></dd><dt class="param">nom</dt><dd class="cmt"><p>nom de l'utilisateur</p></dd><dt class="param">email</dt><dd class="cmt"><p>email de l'utilisateur</p></dd><dt class="param">pseudo</dt><dd class="cmt"><p>pseudo de l'utilisateur</p></dd><dt class="param">genre</dt><dd class="cmt"><p>genre de l'utilisateur, true pour homme, false pour femme</p></dd><dt class="param">anniversaire</dt><dd class="cmt"><p>date de naissance de l'utilisateur</p></dd><dt class="param">statut_id</dt><dd class="cmt"><p>id du statut de l'utilisateur</p></dd><dt class="param">pays_id</dt><dd class="cmt"><p>id du pays de l'utilisateur</p></dd><dt>returns</dt><dd class="cmt"><p>boolean true si update à marcher, false sinon</p></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">

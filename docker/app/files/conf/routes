@@ -10,12 +10,16 @@ GET		/profil					        controllers.HomeController.Profil
 GET     /deco                          controllers.HomeController.Disconnect
 GET		/categorie				        controllers.HomeController.Categorie
 GET		/sousCategorie					controllers.HomeController.sousCategorie(default: String ?= "")
-GET		/AddSousCategorie				controllers.HomeController.addSousCategorie(nom : String, categorie_id : Int)
+POST	/AddSousCategorie				controllers.HomeController.addSousCategorie
 POST    /login                         controllers.HomeController.LoginSubmit
 POST    /register                      controllers.HomeController.RegisterSubmit
 GET     /register                      controllers.HomeController.Register
 GET     /options                       controllers.HomeController.ModifOptions
 GET     /modifoptions                  controllers.HomeController.ModifOptionsSub(Option : String)
+POST    /modifprofile                  controllers.HomeController.ModifProfile
+
+POST    /AddExpense                     controllers.HomeController.AddExpense
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

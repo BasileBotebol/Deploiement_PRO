@@ -103,8 +103,8 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="controllers">controllers</a></dd></dl></div>
     </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="class" href="BDD.html" title=""></a>
-                        <a href="BDD.html" title="">BDD</a>
+                        <a class="class" href="BDD.html" title="Base de donnée."></a>
+                        <a href="BDD.html" title="Base de donnée.">BDD</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="class" href="Categorie.html" title=""></a>
@@ -220,9 +220,9 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="controllers.BDDpackage.Utilisateur#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(id:Int,prenom:String,nom:String,email:String,pseudo:String,genre:String,anniversaire:String,cree_a:String,droit:String,statut:String,pays:String,options:java.util.ArrayList[Boolean]):controllers.BDDpackage.Utilisateur"></a><a id="&lt;init&gt;:Utilisateur"></a>
+      <a id="&lt;init&gt;(id:Int,prenom:String,nom:String,email:String,pseudo:String,genre:String,anniversaire:String,cree_a:String,droit:String,statut:String,pays:String,options:java.util.ArrayList[Boolean],solde:Double):controllers.BDDpackage.Utilisateur"></a><a id="&lt;init&gt;:Utilisateur"></a>
       <span class="permalink">
-      <a href="../../controllers/BDDpackage/Utilisateur.html#&lt;init&gt;(id:Int,prenom:String,nom:String,email:String,pseudo:String,genre:String,anniversaire:String,cree_a:String,droit:String,statut:String,pays:String,options:java.util.ArrayList[Boolean]):controllers.BDDpackage.Utilisateur" title="Permalink">
+      <a href="../../controllers/BDDpackage/Utilisateur.html#&lt;init&gt;(id:Int,prenom:String,nom:String,email:String,pseudo:String,genre:String,anniversaire:String,cree_a:String,droit:String,statut:String,pays:String,options:java.util.ArrayList[Boolean],solde:Double):controllers.BDDpackage.Utilisateur" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -231,7 +231,7 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Utilisateur</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Int">Int</span></span>, <span name="prenom">prenom: <span class="extype" name="java.lang.String">String</span></span>, <span name="nom">nom: <span class="extype" name="java.lang.String">String</span></span>, <span name="email">email: <span class="extype" name="java.lang.String">String</span></span>, <span name="pseudo">pseudo: <span class="extype" name="java.lang.String">String</span></span>, <span name="genre">genre: <span class="extype" name="java.lang.String">String</span></span>, <span name="anniversaire">anniversaire: <span class="extype" name="java.lang.String">String</span></span>, <span name="cree_a">cree_a: <span class="extype" name="java.lang.String">String</span></span>, <span name="droit">droit: <span class="extype" name="java.lang.String">String</span></span>, <span name="statut">statut: <span class="extype" name="java.lang.String">String</span></span>, <span name="pays">pays: <span class="extype" name="java.lang.String">String</span></span>, <span name="options">options: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<span class="extype" name="java.lang.Boolean">Boolean</span>]</span>)</span>
+        <span class="name">Utilisateur</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Int">Int</span></span>, <span name="prenom">prenom: <span class="extype" name="java.lang.String">String</span></span>, <span name="nom">nom: <span class="extype" name="java.lang.String">String</span></span>, <span name="email">email: <span class="extype" name="java.lang.String">String</span></span>, <span name="pseudo">pseudo: <span class="extype" name="java.lang.String">String</span></span>, <span name="genre">genre: <span class="extype" name="java.lang.String">String</span></span>, <span name="anniversaire">anniversaire: <span class="extype" name="java.lang.String">String</span></span>, <span name="cree_a">cree_a: <span class="extype" name="java.lang.String">String</span></span>, <span name="droit">droit: <span class="extype" name="java.lang.String">String</span></span>, <span name="statut">statut: <span class="extype" name="java.lang.String">String</span></span>, <span name="pays">pays: <span class="extype" name="java.lang.String">String</span></span>, <span name="options">options: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<span class="extype" name="java.lang.Boolean">Boolean</span>]</span>, <span name="solde">solde: <span class="extype" name="scala.Double">Double</span></span>)</span>
       </span>
       
       
@@ -451,6 +451,22 @@
       </span>
       <span class="symbol">
         <span class="name">getOptions</span><span class="params">()</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<span class="extype" name="java.lang.Boolean">Boolean</span>]</span>
+      </span>
+      
+      
+    </li><li name="controllers.BDDpackage.Utilisateur#getSolde" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getSolde():Double"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/Utilisateur.html#getSolde():Double" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSolde</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
       </span>
       
       
