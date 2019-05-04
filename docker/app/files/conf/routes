@@ -17,8 +17,8 @@ GET     /register                      controllers.HomeController.Register
 GET     /options                       controllers.HomeController.ModifOptions
 GET     /modifoptions                  controllers.HomeController.ModifOptionsSub(Option : String)
 POST    /modifprofile                  controllers.HomeController.ModifProfile
-
-POST    /AddExpense                     controllers.HomeController.AddExpense
+GET     /historique                    controllers.HomeController.Historique
+POST    /AddExpense                    controllers.HomeController.AddExpense
 
 
 # Map static resources from the /public folder to the /assets URL path
