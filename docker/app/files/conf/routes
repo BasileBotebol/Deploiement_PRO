@@ -4,8 +4,6 @@
 
 # An example controller showing a sample home page
 GET     /                               controllers.HomeController.index
-GET		/test						    controllers.HomeController.test
-GET		/testParam						controllers.HomeController.testParam(name: String)
 GET		/profil					        controllers.HomeController.Profil
 GET     /deco                          controllers.HomeController.Disconnect
 GET		/categorie				        controllers.HomeController.Categorie
@@ -19,6 +17,7 @@ GET     /modifoptions                  controllers.HomeController.ModifOptionsSu
 POST    /modifprofile                  controllers.HomeController.ModifProfile
 GET     /historique                    controllers.HomeController.Historique
 POST    /AddExpense                    controllers.HomeController.AddExpense
+GET     /historiqueCat                 controllers.HomeController.historiqueCat(cat : Integer)
 
 
 # Map static resources from the /public folder to the /assets URL path
