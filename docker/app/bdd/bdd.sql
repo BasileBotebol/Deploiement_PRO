@@ -22,7 +22,7 @@ SET row_security = off;
 -- Name: add_sous_cat_perso(integer, integer); Type: PROCEDURE; Schema: public; Owner: postgres
 --
 
-CREATE PROCEDURE public.add_sous_cat_perso(user_id integer, sous_cat_id integer)
+CREATE PROCEDURE public.add_sous_cat_perso(user_id INTEGER, sous_cat_id INTEGER)
     LANGUAGE sql
     AS $$INSERT INTO public.sous_categories_personnelles (utilisateur_id, sous_categorie_id)
 VALUES (user_id, sous_cat_id);
