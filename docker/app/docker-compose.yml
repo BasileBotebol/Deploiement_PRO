@@ -25,5 +25,5 @@ services:
     - ~/.sbt:/root/.sbt
     links:
     - postgres
-    environment:
-      - POSTGRES_SERVICE_HOST=postgres
+    environment: 
+- POSTGRES_SERVICE_HOST=postgres
