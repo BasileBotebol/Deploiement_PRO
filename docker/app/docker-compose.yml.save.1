@@ -1,18 +1,18 @@
-version: '3.7'
+version: '3.3'
 services:
   postgres:
     container_name: pgsql_PRO
-    image: postgres:11
+    image: postgres:9.3
     restart: always
     environment:
     - POSTGRES_DB=BD_Budget
     - POSTGRES_USER=postgres
     - POSTGRES_PASSWORD=123456789
-    - PGDATA=/var/lib/postgresql/data/bdd
+    - PGDATA=/data
     ports:
       - 5432:5432
     volumes:
-      - ./bdd:/docker-entrypoint-initdb.d
+      - ./bdd:/var/lib/postgresql/data
   web:
     restart: always
     depends_on:
@@ -20,14 +20,11 @@ services:
     build: .
     ports:
     - 80:9000
-    volumes:
+restart_policy:
+        condition: on-failure    volumes:
     - ~/.ivy2:/root/.ivy2
     - ~/.sbt:/root/.sbt
     links:
     - postgres
-    environment:
+    environment: 
       - POSTGRES_SERVICE_HOST=postgres
-
-  volumes:
-    ./bdd:
-      driver: test
