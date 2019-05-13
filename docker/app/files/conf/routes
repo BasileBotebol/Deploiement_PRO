@@ -3,12 +3,14 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                               controllers.HomeController.index
+GET     /                              controllers.HomeController.index
 GET		/profil					        controllers.HomeController.Profil
+GET		/statistics 				    controllers.HomeController.Statistics
 GET     /deco                          controllers.HomeController.Disconnect
 GET		/categorie				        controllers.HomeController.Categorie
 GET		/sousCategorie					controllers.HomeController.sousCategorie(default: String ?= "")
 POST	/AddSousCategorie				controllers.HomeController.addSousCategorie
+POST	/creePDF    				    controllers.HomeController.creePDF
 POST    /login                         controllers.HomeController.LoginSubmit
 POST    /register                      controllers.HomeController.RegisterSubmit
 GET     /register                      controllers.HomeController.Register
@@ -18,6 +20,7 @@ POST    /modifprofile                  controllers.HomeController.ModifProfile
 GET     /historique                    controllers.HomeController.Historique
 POST    /AddExpense                    controllers.HomeController.AddExpense
 GET     /historiqueCat                 controllers.HomeController.historiqueCat(cat : Integer)
+POST    /AddLimit                      controllers.HomeController.AddLimit
 
 
 # Map static resources from the /public folder to the /assets URL path

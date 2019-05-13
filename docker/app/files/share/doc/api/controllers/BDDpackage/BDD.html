@@ -398,6 +398,22 @@
       <p class="shortcomment cmt">Permet d'ajouter un revenu
 </p><div class="fullcomment"><div class="comment cmt"><p>Permet d'ajouter un revenu
 </p></div><dl class="paramcmts block"><dt class="param">userID</dt><dd class="cmt"><p>ID de l'utilisateur</p></dd><dt class="param">valeur</dt><dd class="cmt"><p>valeur du revenu</p></dd><dt class="param">sousCategorie</dt><dd class="cmt"><p>sous categorie</p></dd><dt class="param">recurrence</dt><dd class="cmt"><p>recurrence du payement</p></dd><dt class="param">note</dt><dd class="cmt"><p>note de l'utilisateur concernant le payement</p></dd><dt>returns</dt><dd class="cmt"><p>retoure 0 s'il n'y a pas eu de probleme, -1 autrement</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#addLimit" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="addLimit(amount:Double,userId:Int,recId:Int,sousCatId:Int,catId:Int):Int"></a><a id="addLimit(Double,Int,Int,Int,Int):Int"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#addLimit(amount:Double,userId:Int,recId:Int,sousCatId:Int,catId:Int):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addLimit</span><span class="params">(<span name="amount">amount: <span class="extype" name="scala.Double">Double</span></span>, <span name="userId">userId: <span class="extype" name="scala.Int">Int</span></span>, <span name="recId">recId: <span class="extype" name="scala.Int">Int</span></span>, <span name="sousCatId">sousCatId: <span class="extype" name="scala.Int">Int</span></span>, <span name="catId">catId: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      
     </li><li name="controllers.BDDpackage.BDD#addMovement" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="addMovement(userID:Int,valeur:Double,idSousCategorie:Int,recurrenceId:Int,note:String,idTypeTrans:Int):Int"></a><a id="addMovement(Int,Double,Int,Int,String,Int):Int"></a>
       <span class="permalink">
@@ -716,6 +732,22 @@
       </span>
       
       
+    </li><li name="controllers.BDDpackage.BDD#getSumExpensesOnSpecialPeriodCategorie" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getSumExpensesOnSpecialPeriodCategorie(userId:Int,cat:Int,idRecurence:Int):Double"></a><a id="getSumExpensesOnSpecialPeriodCategorie(Int,Int,Int):Double"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getSumExpensesOnSpecialPeriodCategorie(userId:Int,cat:Int,idRecurence:Int):Double" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSumExpensesOnSpecialPeriodCategorie</span><span class="params">(<span name="userId">userId: <span class="extype" name="scala.Int">Int</span></span>, <span name="cat">cat: <span class="extype" name="scala.Int">Int</span></span>, <span name="idRecurence">idRecurence: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      
+      
     </li><li name="controllers.BDDpackage.BDD#getTenLastSousCategorie" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getTenLastSousCategorie(userID:Int,sousCatID:Int):java.util.ArrayList[Integer]"></a><a id="getTenLastSousCategorie(Int,Int):ArrayList[Integer]"></a>
       <span class="permalink">
@@ -734,22 +766,6 @@
       <p class="shortcomment cmt">Renvoie les 10 dernieres depenses toutes categories confondues
 </p><div class="fullcomment"><div class="comment cmt"><p>Renvoie les 10 dernieres depenses toutes categories confondues
 </p></div><dl class="paramcmts block"><dt class="param">userID</dt><dd class="cmt"><p>ID de l'utilisateur</p></dd><dt class="param">sousCatID</dt><dd class="cmt"><p>ID de la sous categorie</p></dd><dt>returns</dt><dd class="cmt"><p>retourne une liste contenant les 10 dernieres transactions de la sous categorie</p></dd></dl></div>
-    </li><li name="controllers.BDDpackage.BDD#getUser" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="getUser():String"></a>
-      <span class="permalink">
-      <a href="../../controllers/BDDpackage/BDD.html#getUser():String" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">getUser</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
-      </span>
-      
-      
     </li><li name="controllers.BDDpackage.BDD#get_Categorie" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="get_Categorie(nom:String):controllers.BDDpackage.Categorie"></a><a id="get_Categorie(String):Categorie"></a>
       <span class="permalink">
