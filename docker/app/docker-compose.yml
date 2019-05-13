@@ -27,7 +27,3 @@ services:
     - postgres
     environment:
       - POSTGRES_SERVICE_HOST=postgres
-
-  volumes:
-    ./bdd:
-      driver: test
