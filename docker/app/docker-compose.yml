@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.3'
 services:
   postgres:
     container_name: pgsql_PRO
@@ -26,4 +26,4 @@ services:
     links:
     - postgres
     environment: 
-- POSTGRES_SERVICE_HOST=postgres
+    - POSTGRES_SERVICE_HOST=postgres
