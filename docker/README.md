@@ -1,5 +1,5 @@
 # Docker - PRO
-
+* Ajouter ```rm /svc/RUNNING_PID``` au début du fichier /files/bin/start
 ## Application
 
 1. Modification des fichiers (à définir)
