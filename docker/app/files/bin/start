@@ -3,7 +3,7 @@
 ###  ------------------------------- ###
 ###  Helper methods for BASH scripts ###
 ###  ------------------------------- ###
-
+rm /svc/RUNNING_PID
 die() {
   echo "$@" 1>&2
   exit 1

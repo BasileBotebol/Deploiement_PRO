@@ -5,7 +5,7 @@
 -- Dumped from database version 11.2
 -- Dumped by pg_dump version 11.2
 
--- Started on 2019-05-20 13:06:41
+-- Started on 2019-05-20 14:03:09
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2180,7 +2180,7 @@ ALTER TABLE ONLY public.sous_categories_personnelles
 REVOKE ALL ON FUNCTION public."transactionCreation"() FROM postgres;
 
 
--- Completed on 2019-05-20 13:06:41
+-- Completed on 2019-05-20 14:03:10
 
 --
 -- PostgreSQL database dump complete

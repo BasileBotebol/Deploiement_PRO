@@ -26,8 +26,14 @@
     ```
     
     Elles permettent de préparer les fichiers de l'application pour docker.
+    
+    **Ajouter ```rm /svc/RUNNING_PID``` au début du fichier /files/bin/start**
+    
+4. Base de données
 
-4. Lancement de l'application sur le serveur
+    Si il y a eu une modification de la base de données, il faut mettre à jour le fichier bdd.sql en exportant 
+
+5. Lancement de l'application sur le serveur
 
     Ouvrir docker dans le répertoire ```docker/app/``` et taper la commande ```docker-compose up```. Cette commande va appeler le fichier docker-compose.yml ainsi que Dockerfile. L'application va tourner en production sous docker.
     
