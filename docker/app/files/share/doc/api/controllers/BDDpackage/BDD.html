@@ -119,6 +119,14 @@
                         <a href="Modele_transaction.html" title="Classe permettant de modéliser un Modele de transaction de la base de donnée">Modele_transaction</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="MonthlyExpense.html" title="Classe permettant de modéliser qqch"></a>
+                        <a href="MonthlyExpense.html" title="Classe permettant de modéliser qqch">MonthlyExpense</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="Notification.html" title="Classe permettant de modéliser une Notification de la base de donnée"></a>
+                        <a href="Notification.html" title="Classe permettant de modéliser une Notification de la base de donnée">Notification</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="class" href="Pays.html" title="Classe permettant de modéliser un Pays de la base de donnée"></a>
                         <a href="Pays.html" title="Classe permettant de modéliser un Pays de la base de donnée">Pays</a>
                       </li><li class="current-entities indented2">
@@ -605,6 +613,22 @@
       </span>
       
       <p class="shortcomment cmt"></p>
+    </li><li name="controllers.BDDpackage.BDD#getAllNotification" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getAllNotification(userId:Int):java.util.ArrayList[controllers.BDDpackage.Notification]"></a><a id="getAllNotification(Int):ArrayList[Notification]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getAllNotification(userId:Int):java.util.ArrayList[controllers.BDDpackage.Notification]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAllNotification</span><span class="params">(<span name="userId">userId: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<a href="Notification.html" class="extype" name="controllers.BDDpackage.Notification">Notification</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Récupère toutes les notifications du user</p><div class="fullcomment"><div class="comment cmt"><p>Récupère toutes les notifications du user</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>toutes les notifications du user</p></dd></dl></div>
     </li><li name="controllers.BDDpackage.BDD#getAllTransaction" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getAllTransaction(userId:Int):java.util.ArrayList[controllers.BDDpackage.Transaction]"></a><a id="getAllTransaction(Int):ArrayList[Transaction]"></a>
       <span class="permalink">
@@ -674,6 +698,22 @@
       <p class="shortcomment cmt">Récupère les diffèrentes récurences
 </p><div class="fullcomment"><div class="comment cmt"><p>Récupère les diffèrentes récurences
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>une ArrayList&lt;Recurrence&gt; contenant toutes les récurences de la base de donnée</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#getSoldeByCategorie" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSoldeByCategorie(IDuser:Int,IDCat:Int):Int"></a><a id="getSoldeByCategorie(Int,Int):Int"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getSoldeByCategorie(IDuser:Int,IDCat:Int):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSoldeByCategorie</span><span class="params">(<span name="IDuser">IDuser: <span class="extype" name="scala.Int">Int</span></span>, <span name="IDCat">IDCat: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Récupère le solde total d'une catégorie</p><div class="fullcomment"><div class="comment cmt"><p>Récupère le solde total d'une catégorie</p></div><dl class="paramcmts block"><dt class="param">IDuser</dt><dd class="cmt"><p>ID du user</p></dd><dt class="param">IDCat</dt><dd class="cmt"><p>UD de la catégorie</p></dd><dt>returns</dt><dd class="cmt"><p>le solde total d'un catégorie</p></dd></dl></div>
     </li><li name="controllers.BDDpackage.BDD#getSoldeById" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="getSoldeById(userId:Int):Double"></a><a id="getSoldeById(Int):Double"></a>
       <span class="permalink">
@@ -690,6 +730,54 @@
       </span>
       
       <p class="shortcomment cmt"></p>
+    </li><li name="controllers.BDDpackage.BDD#getSoldeBySousCategorie" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSoldeBySousCategorie(IDuser:Int,IDSousCat:Int):Int"></a><a id="getSoldeBySousCategorie(Int,Int):Int"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getSoldeBySousCategorie(IDuser:Int,IDSousCat:Int):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSoldeBySousCategorie</span><span class="params">(<span name="IDuser">IDuser: <span class="extype" name="scala.Int">Int</span></span>, <span name="IDSousCat">IDSousCat: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Récupère le solde total d'une sous catégorie</p><div class="fullcomment"><div class="comment cmt"><p>Récupère le solde total d'une sous catégorie</p></div><dl class="paramcmts block"><dt class="param">IDuser</dt><dd class="cmt"><p>l'ID du user</p></dd><dt class="param">IDSousCat</dt><dd class="cmt"><p>l'ID de la sous catégorie</p></dd><dt>returns</dt><dd class="cmt"><p>Le solde total d'une sous catégorie</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#getSoldeOverAllOneMonth" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSoldeOverAllOneMonth(diffNowMonth:Int,idUser:Int):controllers.BDDpackage.MonthlyExpense"></a><a id="getSoldeOverAllOneMonth(Int,Int):MonthlyExpense"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getSoldeOverAllOneMonth(diffNowMonth:Int,idUser:Int):controllers.BDDpackage.MonthlyExpense" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSoldeOverAllOneMonth</span><span class="params">(<span name="diffNowMonth">diffNowMonth: <span class="extype" name="scala.Int">Int</span></span>, <span name="idUser">idUser: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="MonthlyExpense.html" class="extype" name="controllers.BDDpackage.MonthlyExpense">MonthlyExpense</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Permet de récupèrer le solde total d'un mois</p><div class="fullcomment"><div class="comment cmt"><p>Permet de récupèrer le solde total d'un mois</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Le nom du mois et le solde</p></dd></dl></div>
+    </li><li name="controllers.BDDpackage.BDD#getSoldeOverAllOneYear" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSoldeOverAllOneYear(idUser:Int):java.util.ArrayList[controllers.BDDpackage.MonthlyExpense]"></a><a id="getSoldeOverAllOneYear(Int):ArrayList[MonthlyExpense]"></a>
+      <span class="permalink">
+      <a href="../../controllers/BDDpackage/BDD.html#getSoldeOverAllOneYear(idUser:Int):java.util.ArrayList[controllers.BDDpackage.MonthlyExpense]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSoldeOverAllOneYear</span><span class="params">(<span name="idUser">idUser: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.util.ArrayList">ArrayList</span>[<a href="MonthlyExpense.html" class="extype" name="controllers.BDDpackage.MonthlyExpense">MonthlyExpense</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Permet de récupèrer tous les soldes de tous les 12 derniers moins</p><div class="fullcomment"><div class="comment cmt"><p>Permet de récupèrer tous les soldes de tous les 12 derniers moins</p></div><dl class="paramcmts block"><dt class="param">idUser</dt><dd class="cmt"><p>ID du user concerné</p></dd><dt>returns</dt><dd class="cmt"><p>Une liste des noms des moins avec les soldes</p></dd></dl></div>
     </li><li name="controllers.BDDpackage.BDD#getSousCategorieID" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getSousCategorieID(sousCategorie:String):Int"></a><a id="getSousCategorieID(String):Int"></a>
       <span class="permalink">

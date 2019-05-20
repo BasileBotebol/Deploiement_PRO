@@ -5,7 +5,7 @@
 -- Dumped from database version 11.2
 -- Dumped by pg_dump version 11.2
 
--- Started on 2019-05-15 15:26:20
+-- Started on 2019-05-20 13:06:41
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -18,7 +18,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 225 (class 1255 OID 17607)
+-- TOC entry 225 (class 1255 OID 17842)
 -- Name: add_sous_cat_perso(integer, integer); Type: PROCEDURE; Schema: public; Owner: postgres
 --
 
@@ -32,7 +32,78 @@ $$;
 ALTER PROCEDURE public.add_sous_cat_perso(user_id integer, sous_cat_id integer) OWNER TO postgres;
 
 --
--- TOC entry 226 (class 1255 OID 17608)
+-- TOC entry 226 (class 1255 OID 17843)
+-- Name: check_limits(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.check_limits() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$DECLARE
+	cat Integer;
+	id_limite Integer;
+	total_limit Integer;
+	id_transaction Integer;
+	val_t Integer;
+	temps Interval;
+	rec Integer;
+	val_lim Integer;
+	id_user Integer;
+	cat_name varchar;
+BEGIN
+	SELECT ca.categorie_id, mt.utilisateur_id FROM public.modele_transaction AS mt INTO cat, id_user
+	INNER JOIN public.sous_categorie AS sc USING (sous_categorie_id)
+	INNER JOIN public.categorie AS ca USING (categorie_id)
+	WHERE modele_transaction_id = NEW.modele_transaction_id AND type_transaction_id != 2;
+	raise notice 'Value cat: %', cat;
+	raise notice 'Value user_id: %', id_user;
+	IF cat IS NOT NULL THEN
+		FOR id_limite IN SELECT limite_id FROM public.limite WHERE categorie_id = cat AND utilisateur_id  = id_user
+		LOOP
+			total_limit := 0;
+			SELECT recurence_id, valeur FROM public.limite WHERE limite_id = id_limite INTO rec, val_lim;
+			IF rec = 1 THEN temps = interval '1 year';
+			ELSIF rec = 2 THEN temps = interval '1 month';
+			ELSIF rec = 3 THEN temps = interval '7 days';
+			ELSIF rec = 4 THEN temps = interval '1 day';
+			ELSIF rec = 5 THEN temps = interval '3 months';
+			ELSIF rec = 6 THEN temps = interval '6 months';
+			END IF;
+			raise notice 'Value recurrence: %', rec;
+			FOR id_transaction IN
+			SELECT transaction_id FROM public.transaction AS tr
+			INNER JOIN public.modele_transaction AS mt USING (modele_transaction_id)
+			INNER JOIN public.sous_categorie AS sc USING (sous_categorie_id)
+			INNER JOIN public.categorie AS ca USING (categorie_id)	
+			WHERE sc.categorie_id = cat AND mt.utilisateur_id = id_user AND mt.type_transaction_id != 2 AND tr.date > (CURRENT_DATE - temps)
+			LOOP
+				SELECT valeur FROM public.transaction WHERE transaction_id = id_transaction INTO val_t;
+				total_limit := total_limit + val_t;
+			END LOOP;
+			raise notice 'Value total_limit: %', total_limit;
+			IF total_limit > val_lim THEN
+				SELECT nom FROM public.categorie WHERE cat = categorie_id INTO cat_name;
+				INSERT INTO public.notification (titre, message, utilisateur_id)
+				VALUES ('Limit broken', CONCAT('In category : ',cat_name), id_user);
+			END IF;
+		END LOOP;
+	END IF;
+RETURN NEW;
+END$$;
+
+
+ALTER FUNCTION public.check_limits() OWNER TO postgres;
+
+--
+-- TOC entry 3012 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: FUNCTION check_limits(); Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON FUNCTION public.check_limits() IS 'cree une notification si une transaction depasse une limite';
+
+
+--
+-- TOC entry 227 (class 1255 OID 17844)
 -- Name: check_recurrences(integer); Type: PROCEDURE; Schema: public; Owner: postgres
 --
 
@@ -134,8 +205,8 @@ END;
 ALTER PROCEDURE public.check_recurrences(user_id integer) OWNER TO postgres;
 
 --
--- TOC entry 3010 (class 0 OID 0)
--- Dependencies: 226
+-- TOC entry 3013 (class 0 OID 0)
+-- Dependencies: 227
 -- Name: PROCEDURE check_recurrences(user_id integer); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -143,7 +214,7 @@ COMMENT ON PROCEDURE public.check_recurrences(user_id integer) IS 'Regarde si un
 
 
 --
--- TOC entry 227 (class 1255 OID 17609)
+-- TOC entry 240 (class 1255 OID 17845)
 -- Name: modifSoldeExpense(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -163,8 +234,8 @@ $$;
 ALTER FUNCTION public."modifSoldeExpense"() OWNER TO postgres;
 
 --
--- TOC entry 3011 (class 0 OID 0)
--- Dependencies: 227
+-- TOC entry 3014 (class 0 OID 0)
+-- Dependencies: 240
 -- Name: FUNCTION "modifSoldeExpense"(); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -172,7 +243,7 @@ COMMENT ON FUNCTION public."modifSoldeExpense"() IS 'Modifie le solde de l''util
 
 
 --
--- TOC entry 228 (class 1255 OID 17610)
+-- TOC entry 241 (class 1255 OID 17846)
 -- Name: modifSoldeIncome(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -192,8 +263,8 @@ $$;
 ALTER FUNCTION public."modifSoldeIncome"() OWNER TO postgres;
 
 --
--- TOC entry 3012 (class 0 OID 0)
--- Dependencies: 228
+-- TOC entry 3015 (class 0 OID 0)
+-- Dependencies: 241
 -- Name: FUNCTION "modifSoldeIncome"(); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -201,7 +272,7 @@ COMMENT ON FUNCTION public."modifSoldeIncome"() IS 'Modifie le solde de l''utili
 
 
 --
--- TOC entry 229 (class 1255 OID 17611)
+-- TOC entry 242 (class 1255 OID 17847)
 -- Name: transactionCreation(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -227,8 +298,8 @@ $$;
 ALTER FUNCTION public."transactionCreation"() OWNER TO postgres;
 
 --
--- TOC entry 3013 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 3016 (class 0 OID 0)
+-- Dependencies: 242
 -- Name: FUNCTION "transactionCreation"(); Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -240,7 +311,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 196 (class 1259 OID 17612)
+-- TOC entry 196 (class 1259 OID 17848)
 -- Name: categorie; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -254,7 +325,7 @@ CREATE TABLE public.categorie (
 ALTER TABLE public.categorie OWNER TO postgres;
 
 --
--- TOC entry 197 (class 1259 OID 17615)
+-- TOC entry 197 (class 1259 OID 17851)
 -- Name: Categorie_categorie_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -270,7 +341,7 @@ CREATE SEQUENCE public."Categorie_categorie_id_seq"
 ALTER TABLE public."Categorie_categorie_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3015 (class 0 OID 0)
+-- TOC entry 3018 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: Categorie_categorie_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -279,7 +350,7 @@ ALTER SEQUENCE public."Categorie_categorie_id_seq" OWNED BY public.categorie.cat
 
 
 --
--- TOC entry 198 (class 1259 OID 17617)
+-- TOC entry 198 (class 1259 OID 17853)
 -- Name: limite; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -297,7 +368,7 @@ CREATE TABLE public.limite (
 ALTER TABLE public.limite OWNER TO postgres;
 
 --
--- TOC entry 199 (class 1259 OID 17620)
+-- TOC entry 199 (class 1259 OID 17856)
 -- Name: Limite_limite_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -313,7 +384,7 @@ CREATE SEQUENCE public."Limite_limite_id_seq"
 ALTER TABLE public."Limite_limite_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3016 (class 0 OID 0)
+-- TOC entry 3019 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: Limite_limite_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -322,7 +393,7 @@ ALTER SEQUENCE public."Limite_limite_id_seq" OWNED BY public.limite.limite_id;
 
 
 --
--- TOC entry 200 (class 1259 OID 17622)
+-- TOC entry 200 (class 1259 OID 17858)
 -- Name: modele_transaction; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -341,7 +412,7 @@ CREATE TABLE public.modele_transaction (
 ALTER TABLE public.modele_transaction OWNER TO postgres;
 
 --
--- TOC entry 201 (class 1259 OID 17628)
+-- TOC entry 201 (class 1259 OID 17864)
 -- Name: Modele_transaction_modele_transaction_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -357,7 +428,7 @@ CREATE SEQUENCE public."Modele_transaction_modele_transaction_id_seq"
 ALTER TABLE public."Modele_transaction_modele_transaction_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3017 (class 0 OID 0)
+-- TOC entry 3020 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: Modele_transaction_modele_transaction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -366,7 +437,7 @@ ALTER SEQUENCE public."Modele_transaction_modele_transaction_id_seq" OWNED BY pu
 
 
 --
--- TOC entry 202 (class 1259 OID 17630)
+-- TOC entry 202 (class 1259 OID 17866)
 -- Name: notification; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -381,7 +452,7 @@ CREATE TABLE public.notification (
 ALTER TABLE public.notification OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 17636)
+-- TOC entry 203 (class 1259 OID 17872)
 -- Name: Notification_notification_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -397,7 +468,7 @@ CREATE SEQUENCE public."Notification_notification_id_seq"
 ALTER TABLE public."Notification_notification_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3018 (class 0 OID 0)
+-- TOC entry 3021 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: Notification_notification_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -406,7 +477,7 @@ ALTER SEQUENCE public."Notification_notification_id_seq" OWNED BY public.notific
 
 
 --
--- TOC entry 204 (class 1259 OID 17638)
+-- TOC entry 204 (class 1259 OID 17874)
 -- Name: options; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -419,7 +490,7 @@ CREATE TABLE public.options (
 ALTER TABLE public.options OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 17641)
+-- TOC entry 205 (class 1259 OID 17877)
 -- Name: Options_options_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -435,7 +506,7 @@ CREATE SEQUENCE public."Options_options_id_seq"
 ALTER TABLE public."Options_options_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3019 (class 0 OID 0)
+-- TOC entry 3022 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: Options_options_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -444,7 +515,7 @@ ALTER SEQUENCE public."Options_options_id_seq" OWNED BY public.options.options_i
 
 
 --
--- TOC entry 206 (class 1259 OID 17643)
+-- TOC entry 206 (class 1259 OID 17879)
 -- Name: pays; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -457,7 +528,7 @@ CREATE TABLE public.pays (
 ALTER TABLE public.pays OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 17646)
+-- TOC entry 207 (class 1259 OID 17882)
 -- Name: Pays_pays_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -473,7 +544,7 @@ CREATE SEQUENCE public."Pays_pays_id_seq"
 ALTER TABLE public."Pays_pays_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3020 (class 0 OID 0)
+-- TOC entry 3023 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: Pays_pays_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -482,7 +553,7 @@ ALTER SEQUENCE public."Pays_pays_id_seq" OWNED BY public.pays.pays_id;
 
 
 --
--- TOC entry 208 (class 1259 OID 17648)
+-- TOC entry 208 (class 1259 OID 17884)
 -- Name: recurence; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -495,7 +566,7 @@ CREATE TABLE public.recurence (
 ALTER TABLE public.recurence OWNER TO postgres;
 
 --
--- TOC entry 209 (class 1259 OID 17651)
+-- TOC entry 209 (class 1259 OID 17887)
 -- Name: Recurence_recurence_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -511,7 +582,7 @@ CREATE SEQUENCE public."Recurence_recurence_id_seq"
 ALTER TABLE public."Recurence_recurence_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3021 (class 0 OID 0)
+-- TOC entry 3024 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: Recurence_recurence_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -520,7 +591,7 @@ ALTER SEQUENCE public."Recurence_recurence_id_seq" OWNED BY public.recurence.rec
 
 
 --
--- TOC entry 210 (class 1259 OID 17653)
+-- TOC entry 210 (class 1259 OID 17889)
 -- Name: sous_categorie; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -535,7 +606,7 @@ CREATE TABLE public.sous_categorie (
 ALTER TABLE public.sous_categorie OWNER TO postgres;
 
 --
--- TOC entry 211 (class 1259 OID 17656)
+-- TOC entry 211 (class 1259 OID 17892)
 -- Name: Sous_categorie_sous_categorie_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -551,7 +622,7 @@ CREATE SEQUENCE public."Sous_categorie_sous_categorie_id_seq"
 ALTER TABLE public."Sous_categorie_sous_categorie_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3022 (class 0 OID 0)
+-- TOC entry 3025 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: Sous_categorie_sous_categorie_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -560,7 +631,7 @@ ALTER SEQUENCE public."Sous_categorie_sous_categorie_id_seq" OWNED BY public.sou
 
 
 --
--- TOC entry 212 (class 1259 OID 17658)
+-- TOC entry 212 (class 1259 OID 17894)
 -- Name: statut; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -573,7 +644,7 @@ CREATE TABLE public.statut (
 ALTER TABLE public.statut OWNER TO postgres;
 
 --
--- TOC entry 213 (class 1259 OID 17661)
+-- TOC entry 213 (class 1259 OID 17897)
 -- Name: Statut_statut_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -589,7 +660,7 @@ CREATE SEQUENCE public."Statut_statut_id_seq"
 ALTER TABLE public."Statut_statut_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3023 (class 0 OID 0)
+-- TOC entry 3026 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: Statut_statut_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -598,7 +669,7 @@ ALTER SEQUENCE public."Statut_statut_id_seq" OWNED BY public.statut.statut_id;
 
 
 --
--- TOC entry 214 (class 1259 OID 17663)
+-- TOC entry 214 (class 1259 OID 17899)
 -- Name: transaction; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -614,7 +685,7 @@ CREATE TABLE public.transaction (
 ALTER TABLE public.transaction OWNER TO postgres;
 
 --
--- TOC entry 215 (class 1259 OID 17666)
+-- TOC entry 215 (class 1259 OID 17902)
 -- Name: Transaction_transaction_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -630,7 +701,7 @@ CREATE SEQUENCE public."Transaction_transaction_id_seq"
 ALTER TABLE public."Transaction_transaction_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3024 (class 0 OID 0)
+-- TOC entry 3027 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: Transaction_transaction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -639,7 +710,7 @@ ALTER SEQUENCE public."Transaction_transaction_id_seq" OWNED BY public.transacti
 
 
 --
--- TOC entry 216 (class 1259 OID 17668)
+-- TOC entry 216 (class 1259 OID 17904)
 -- Name: type_transaction; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -652,7 +723,7 @@ CREATE TABLE public.type_transaction (
 ALTER TABLE public.type_transaction OWNER TO postgres;
 
 --
--- TOC entry 217 (class 1259 OID 17671)
+-- TOC entry 217 (class 1259 OID 17907)
 -- Name: Type_transaction_type_transaction_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -668,7 +739,7 @@ CREATE SEQUENCE public."Type_transaction_type_transaction_id_seq"
 ALTER TABLE public."Type_transaction_type_transaction_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3025 (class 0 OID 0)
+-- TOC entry 3028 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: Type_transaction_type_transaction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -677,7 +748,7 @@ ALTER SEQUENCE public."Type_transaction_type_transaction_id_seq" OWNED BY public
 
 
 --
--- TOC entry 218 (class 1259 OID 17673)
+-- TOC entry 218 (class 1259 OID 17909)
 -- Name: utilisateur; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -702,7 +773,7 @@ CREATE TABLE public.utilisateur (
 ALTER TABLE public.utilisateur OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 17677)
+-- TOC entry 219 (class 1259 OID 17913)
 -- Name: Utilisateur_utilisateur_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -718,7 +789,7 @@ CREATE SEQUENCE public."Utilisateur_utilisateur_id_seq"
 ALTER TABLE public."Utilisateur_utilisateur_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3026 (class 0 OID 0)
+-- TOC entry 3029 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: Utilisateur_utilisateur_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -727,7 +798,7 @@ ALTER SEQUENCE public."Utilisateur_utilisateur_id_seq" OWNED BY public.utilisate
 
 
 --
--- TOC entry 220 (class 1259 OID 17679)
+-- TOC entry 220 (class 1259 OID 17915)
 -- Name: droit; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -740,7 +811,7 @@ CREATE TABLE public.droit (
 ALTER TABLE public.droit OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 17682)
+-- TOC entry 221 (class 1259 OID 17918)
 -- Name: droit_droit_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -756,7 +827,7 @@ CREATE SEQUENCE public.droit_droit_id_seq
 ALTER TABLE public.droit_droit_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3027 (class 0 OID 0)
+-- TOC entry 3030 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: droit_droit_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -765,7 +836,7 @@ ALTER SEQUENCE public.droit_droit_id_seq OWNED BY public.droit.droit_id;
 
 
 --
--- TOC entry 222 (class 1259 OID 17684)
+-- TOC entry 222 (class 1259 OID 17920)
 -- Name: sous_categories_personnelles; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -778,7 +849,7 @@ CREATE TABLE public.sous_categories_personnelles (
 ALTER TABLE public.sous_categories_personnelles OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 17687)
+-- TOC entry 223 (class 1259 OID 17923)
 -- Name: test; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -791,7 +862,7 @@ CREATE TABLE public.test (
 ALTER TABLE public.test OWNER TO postgres;
 
 --
--- TOC entry 224 (class 1259 OID 17690)
+-- TOC entry 224 (class 1259 OID 17926)
 -- Name: test_testt_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -807,7 +878,7 @@ CREATE SEQUENCE public.test_testt_seq
 ALTER TABLE public.test_testt_seq OWNER TO postgres;
 
 --
--- TOC entry 3028 (class 0 OID 0)
+-- TOC entry 3031 (class 0 OID 0)
 -- Dependencies: 224
 -- Name: test_testt_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -816,7 +887,7 @@ ALTER SEQUENCE public.test_testt_seq OWNED BY public.test.testt;
 
 
 --
--- TOC entry 2774 (class 2604 OID 17692)
+-- TOC entry 2775 (class 2604 OID 17928)
 -- Name: categorie categorie_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -824,7 +895,7 @@ ALTER TABLE ONLY public.categorie ALTER COLUMN categorie_id SET DEFAULT nextval(
 
 
 --
--- TOC entry 2787 (class 2604 OID 17693)
+-- TOC entry 2788 (class 2604 OID 17929)
 -- Name: droit droit_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -832,7 +903,7 @@ ALTER TABLE ONLY public.droit ALTER COLUMN droit_id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2775 (class 2604 OID 17694)
+-- TOC entry 2776 (class 2604 OID 17930)
 -- Name: limite limite_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -840,7 +911,7 @@ ALTER TABLE ONLY public.limite ALTER COLUMN limite_id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 2776 (class 2604 OID 17695)
+-- TOC entry 2777 (class 2604 OID 17931)
 -- Name: modele_transaction modele_transaction_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -848,7 +919,7 @@ ALTER TABLE ONLY public.modele_transaction ALTER COLUMN modele_transaction_id SE
 
 
 --
--- TOC entry 2777 (class 2604 OID 17696)
+-- TOC entry 2778 (class 2604 OID 17932)
 -- Name: notification notification_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -856,7 +927,7 @@ ALTER TABLE ONLY public.notification ALTER COLUMN notification_id SET DEFAULT ne
 
 
 --
--- TOC entry 2778 (class 2604 OID 17697)
+-- TOC entry 2779 (class 2604 OID 17933)
 -- Name: options options_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -864,7 +935,7 @@ ALTER TABLE ONLY public.options ALTER COLUMN options_id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 2779 (class 2604 OID 17698)
+-- TOC entry 2780 (class 2604 OID 17934)
 -- Name: pays pays_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -872,7 +943,7 @@ ALTER TABLE ONLY public.pays ALTER COLUMN pays_id SET DEFAULT nextval('public."P
 
 
 --
--- TOC entry 2780 (class 2604 OID 17699)
+-- TOC entry 2781 (class 2604 OID 17935)
 -- Name: recurence recurence_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -880,7 +951,7 @@ ALTER TABLE ONLY public.recurence ALTER COLUMN recurence_id SET DEFAULT nextval(
 
 
 --
--- TOC entry 2781 (class 2604 OID 17700)
+-- TOC entry 2782 (class 2604 OID 17936)
 -- Name: sous_categorie sous_categorie_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -888,7 +959,7 @@ ALTER TABLE ONLY public.sous_categorie ALTER COLUMN sous_categorie_id SET DEFAUL
 
 
 --
--- TOC entry 2782 (class 2604 OID 17701)
+-- TOC entry 2783 (class 2604 OID 17937)
 -- Name: statut statut_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -896,7 +967,7 @@ ALTER TABLE ONLY public.statut ALTER COLUMN statut_id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 2788 (class 2604 OID 17702)
+-- TOC entry 2789 (class 2604 OID 17938)
 -- Name: test testt; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -904,7 +975,7 @@ ALTER TABLE ONLY public.test ALTER COLUMN testt SET DEFAULT nextval('public.test
 
 
 --
--- TOC entry 2783 (class 2604 OID 17703)
+-- TOC entry 2784 (class 2604 OID 17939)
 -- Name: transaction transaction_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -912,7 +983,7 @@ ALTER TABLE ONLY public.transaction ALTER COLUMN transaction_id SET DEFAULT next
 
 
 --
--- TOC entry 2784 (class 2604 OID 17704)
+-- TOC entry 2785 (class 2604 OID 17940)
 -- Name: type_transaction type_transaction_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -920,7 +991,7 @@ ALTER TABLE ONLY public.type_transaction ALTER COLUMN type_transaction_id SET DE
 
 
 --
--- TOC entry 2786 (class 2604 OID 17705)
+-- TOC entry 2787 (class 2604 OID 17941)
 -- Name: utilisateur utilisateur_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -928,7 +999,7 @@ ALTER TABLE ONLY public.utilisateur ALTER COLUMN utilisateur_id SET DEFAULT next
 
 
 --
--- TOC entry 2976 (class 0 OID 17612)
+-- TOC entry 2978 (class 0 OID 17848)
 -- Dependencies: 196
 -- Data for Name: categorie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -953,7 +1024,7 @@ COPY public.categorie (categorie_id, nom, couleur) FROM stdin;
 
 
 --
--- TOC entry 3000 (class 0 OID 17679)
+-- TOC entry 3002 (class 0 OID 17915)
 -- Dependencies: 220
 -- Data for Name: droit; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -966,17 +1037,19 @@ COPY public.droit (droit_id, nom) FROM stdin;
 
 
 --
--- TOC entry 2978 (class 0 OID 17617)
+-- TOC entry 2980 (class 0 OID 17853)
 -- Dependencies: 198
 -- Data for Name: limite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.limite (limite_id, date, valeur, utilisateur_id, recurence_id, sous_categorie_id, categorie_id) FROM stdin;
+1	2019-05-18	10.00	8	4	\N	10
+2	2019-05-18	20.00	8	1	\N	6
 \.
 
 
 --
--- TOC entry 2980 (class 0 OID 17622)
+-- TOC entry 2982 (class 0 OID 17858)
 -- Dependencies: 200
 -- Data for Name: modele_transaction; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1005,21 +1078,44 @@ COPY public.modele_transaction (modele_transaction_id, valeur, date, note, utili
 49	3.00	2019-05-10	test recurrences	8	1	1	4
 50	4.00	2019-02-10	test recurrences mois	8	1	1	2
 51	5.00	2019-02-10	test recurrences mois timestamp correctif	8	1	1	2
+52	200.00	2019-05-10	test_recurrence_site	8	98	1	4
+58	20.00	2019-05-18	swag notif check	8	61	1	4
+59	20.00	2019-05-18	swag notif check2	8	61	1	4
+60	20.00	2019-05-18	swag notif check3	8	61	1	4
+61	20.00	2019-05-18	swag notif check4	8	61	1	4
+63	20.00	2019-05-18	swag notif check6	8	61	1	4
+64	20.00	2019-05-18	swag notif check7	8	61	1	4
+65	50.00	2019-05-18		8	38	1	\N
+66	60.00	2019-05-18	testtttt notifff	8	38	1	\N
 \.
 
 
 --
--- TOC entry 2982 (class 0 OID 17630)
+-- TOC entry 2984 (class 0 OID 17866)
 -- Dependencies: 202
 -- Data for Name: notification; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.notification (notification_id, titre, message, utilisateur_id) FROM stdin;
+1	Limit broken	You have spent too much in a category	8
+2	Limit broken	Loisirs, sports et passe-temps	8
+3	Limit broken	In category : Loisirs, sports et passe-temps	8
+4	Limit broken	In category : Loisirs, sports et passe-temps	8
+5	Limit broken	In category : Loisirs, sports et passe-temps	8
+6	Limit broken	In category : Loisirs, sports et passe-temps	8
+7	Limit broken	In category : Loisirs, sports et passe-temps	8
+8	Limit broken	In category : Loisirs, sports et passe-temps	8
+9	Limit broken	In category : Loisirs, sports et passe-temps	8
+10	Limit broken	In category : Loisirs, sports et passe-temps	8
+11	Limit broken	In category : Loisirs, sports et passe-temps	8
+12	Limit broken	In category : Loisirs, sports et passe-temps	8
+13	Limit broken	In category : Loisirs, sports et passe-temps	8
+14	Limit broken	In category : Santé	8
 \.
 
 
 --
--- TOC entry 2984 (class 0 OID 17638)
+-- TOC entry 2986 (class 0 OID 17874)
 -- Dependencies: 204
 -- Data for Name: options; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1031,7 +1127,7 @@ COPY public.options (options_id, rappel_email) FROM stdin;
 
 
 --
--- TOC entry 2986 (class 0 OID 17643)
+-- TOC entry 2988 (class 0 OID 17879)
 -- Dependencies: 206
 -- Data for Name: pays; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1282,7 +1378,7 @@ COPY public.pays (pays_id, nom) FROM stdin;
 
 
 --
--- TOC entry 2988 (class 0 OID 17648)
+-- TOC entry 2990 (class 0 OID 17884)
 -- Dependencies: 208
 -- Data for Name: recurence; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1298,7 +1394,7 @@ COPY public.recurence (recurence_id, periodicite) FROM stdin;
 
 
 --
--- TOC entry 2990 (class 0 OID 17653)
+-- TOC entry 2992 (class 0 OID 17889)
 -- Dependencies: 210
 -- Data for Name: sous_categorie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1403,7 +1499,7 @@ COPY public.sous_categorie (sous_categorie_id, nom, categorie_id, is_global) FRO
 
 
 --
--- TOC entry 3002 (class 0 OID 17684)
+-- TOC entry 3004 (class 0 OID 17920)
 -- Dependencies: 222
 -- Data for Name: sous_categories_personnelles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1413,7 +1509,7 @@ COPY public.sous_categories_personnelles (sous_categorie_id, utilisateur_id) FRO
 
 
 --
--- TOC entry 2992 (class 0 OID 17658)
+-- TOC entry 2994 (class 0 OID 17894)
 -- Dependencies: 212
 -- Data for Name: statut; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1426,7 +1522,7 @@ COPY public.statut (statut_id, nom) FROM stdin;
 
 
 --
--- TOC entry 3003 (class 0 OID 17687)
+-- TOC entry 3005 (class 0 OID 17923)
 -- Dependencies: 223
 -- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1448,7 +1544,7 @@ COPY public.test (testt, swag) FROM stdin;
 
 
 --
--- TOC entry 2994 (class 0 OID 17663)
+-- TOC entry 2996 (class 0 OID 17899)
 -- Dependencies: 214
 -- Data for Name: transaction; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1483,11 +1579,47 @@ COPY public.transaction (transaction_id, valeur, date, modele_transaction_id, ti
 51	5.00	2019-03-10	51	-481.00
 52	5.00	2019-04-10	51	-486.00
 53	5.00	2019-05-10	51	-491.00
+54	12.00	2019-05-16	47	-503.00
+55	12.00	2019-05-17	47	-515.00
+56	12.00	2019-05-18	47	-527.00
+57	1.00	2019-05-16	48	-528.00
+58	1.00	2019-05-17	48	-529.00
+59	1.00	2019-05-18	48	-530.00
+60	3.00	2019-05-16	49	-533.00
+61	3.00	2019-05-17	49	-536.00
+62	3.00	2019-05-18	49	-539.00
+64	200.00	2019-05-10	52	10.00
+65	200.00	2019-05-11	52	-939.00
+66	200.00	2019-05-12	52	-1139.00
+67	200.00	2019-05-13	52	-1339.00
+68	200.00	2019-05-14	52	-1539.00
+69	200.00	2019-05-15	52	-1739.00
+70	200.00	2019-05-16	52	-1939.00
+71	200.00	2019-05-17	52	-2139.00
+72	200.00	2019-05-18	52	-2339.00
+78	20.00	2019-05-18	58	-2359.00
+79	20.00	2019-05-18	59	-2379.00
+80	20.00	2019-05-18	60	-2399.00
+81	20.00	2019-05-18	61	-2419.00
+83	20.00	2019-05-18	63	-2439.00
+84	20.00	2019-05-18	64	-2459.00
+85	300.00	2018-05-10	64	10.00
+86	1000.00	2018-06-10	59	10.00
+87	1050.00	2018-07-10	59	10.00
+88	150.00	2018-08-10	59	10.00
+89	1500.00	2018-09-10	59	10.00
+90	600.00	2018-10-10	59	10.00
+91	1900.00	2018-11-10	59	10.00
+92	3000.00	2018-12-10	59	10.00
+93	100.00	2019-01-10	59	10.00
+94	860.00	2019-02-10	59	10.00
+95	50.00	2019-05-18	65	-12969.00
+96	60.00	2019-05-18	66	-13029.00
 \.
 
 
 --
--- TOC entry 2996 (class 0 OID 17668)
+-- TOC entry 2998 (class 0 OID 17904)
 -- Dependencies: 216
 -- Data for Name: type_transaction; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1499,7 +1631,7 @@ COPY public.type_transaction (type_transaction_id, type) FROM stdin;
 
 
 --
--- TOC entry 2998 (class 0 OID 17673)
+-- TOC entry 3000 (class 0 OID 17909)
 -- Dependencies: 218
 -- Data for Name: utilisateur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1508,12 +1640,12 @@ COPY public.utilisateur (utilisateur_id, prenom, nom, email, pseudo, mdp, genre,
 2	timmy	kun	timmy-timmy@lol.tg	MDR	$2y$10$ZCd.6iesPjZmQyzHmTub4uHbhLAPdXQzam5aebHE2b2hIHJBeI4TS	f	1995-05-02	2019-03-27 10:09:20.086713	2	2	210	2	0.00
 3	Pierrick	Muller	pierrick.muller@heig-vd.ch	Socrate	$2y$10$26dtG0Q5X/gV0F96bdHa/.UntjLWfm1dVJGGTqF0M8ltFm9ExVuEm	\N	1999-12-25	2019-03-27 10:12:25.755226	3	1	210	1	0.00
 7	tommy	gerardi	yolo@pgm.com	thorkal	$2a$10$8dwvTlS4IBnNHh7Tja3b2.WEXgiFxl3WS6yvdyI5rwJgc5XzkuNCW	f	1995-05-23	2019-04-26 12:03:23.404966	2	1	210	1	0.00
-8	eno	gap	lel@test.lulz	qwertz	$2a$10$jfhahSTe4uP1A34aaqjcf.DgES0qlcoMWqso8EqHCNZbAMG5LOJSy	t	2019-05-04	2019-04-27 14:47:10.680539	2	2	16	2	-491.00
+8	eno	gap	lel@test.lulz	qwertz	$2a$10$jfhahSTe4uP1A34aaqjcf.DgES0qlcoMWqso8EqHCNZbAMG5LOJSy	t	2019-05-04	2019-04-27 14:47:10.680539	2	2	16	2	-13029.00
 \.
 
 
 --
--- TOC entry 3029 (class 0 OID 0)
+-- TOC entry 3032 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: Categorie_categorie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1522,34 +1654,34 @@ SELECT pg_catalog.setval('public."Categorie_categorie_id_seq"', 17, true);
 
 
 --
--- TOC entry 3030 (class 0 OID 0)
+-- TOC entry 3033 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: Limite_limite_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Limite_limite_id_seq"', 1, false);
+SELECT pg_catalog.setval('public."Limite_limite_id_seq"', 2, true);
 
 
 --
--- TOC entry 3031 (class 0 OID 0)
+-- TOC entry 3034 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: Modele_transaction_modele_transaction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Modele_transaction_modele_transaction_id_seq"', 51, true);
+SELECT pg_catalog.setval('public."Modele_transaction_modele_transaction_id_seq"', 66, true);
 
 
 --
--- TOC entry 3032 (class 0 OID 0)
+-- TOC entry 3035 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: Notification_notification_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Notification_notification_id_seq"', 1, false);
+SELECT pg_catalog.setval('public."Notification_notification_id_seq"', 14, true);
 
 
 --
--- TOC entry 3033 (class 0 OID 0)
+-- TOC entry 3036 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: Options_options_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1558,7 +1690,7 @@ SELECT pg_catalog.setval('public."Options_options_id_seq"', 3, true);
 
 
 --
--- TOC entry 3034 (class 0 OID 0)
+-- TOC entry 3037 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: Pays_pays_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1567,7 +1699,7 @@ SELECT pg_catalog.setval('public."Pays_pays_id_seq"', 2, true);
 
 
 --
--- TOC entry 3035 (class 0 OID 0)
+-- TOC entry 3038 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: Recurence_recurence_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1576,7 +1708,7 @@ SELECT pg_catalog.setval('public."Recurence_recurence_id_seq"', 6, true);
 
 
 --
--- TOC entry 3036 (class 0 OID 0)
+-- TOC entry 3039 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: Sous_categorie_sous_categorie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1585,7 +1717,7 @@ SELECT pg_catalog.setval('public."Sous_categorie_sous_categorie_id_seq"', 100, t
 
 
 --
--- TOC entry 3037 (class 0 OID 0)
+-- TOC entry 3040 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: Statut_statut_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1594,16 +1726,16 @@ SELECT pg_catalog.setval('public."Statut_statut_id_seq"', 3, true);
 
 
 --
--- TOC entry 3038 (class 0 OID 0)
+-- TOC entry 3041 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: Transaction_transaction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Transaction_transaction_id_seq"', 53, true);
+SELECT pg_catalog.setval('public."Transaction_transaction_id_seq"', 96, true);
 
 
 --
--- TOC entry 3039 (class 0 OID 0)
+-- TOC entry 3042 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: Type_transaction_type_transaction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1612,7 +1744,7 @@ SELECT pg_catalog.setval('public."Type_transaction_type_transaction_id_seq"', 2,
 
 
 --
--- TOC entry 3040 (class 0 OID 0)
+-- TOC entry 3043 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: Utilisateur_utilisateur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1621,7 +1753,7 @@ SELECT pg_catalog.setval('public."Utilisateur_utilisateur_id_seq"', 8, true);
 
 
 --
--- TOC entry 3041 (class 0 OID 0)
+-- TOC entry 3044 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: droit_droit_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1630,7 +1762,7 @@ SELECT pg_catalog.setval('public.droit_droit_id_seq', 3, true);
 
 
 --
--- TOC entry 3042 (class 0 OID 0)
+-- TOC entry 3045 (class 0 OID 0)
 -- Dependencies: 224
 -- Name: test_testt_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1639,7 +1771,7 @@ SELECT pg_catalog.setval('public.test_testt_seq', 12, true);
 
 
 --
--- TOC entry 2790 (class 2606 OID 17707)
+-- TOC entry 2791 (class 2606 OID 17943)
 -- Name: categorie Categorie_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1648,7 +1780,7 @@ ALTER TABLE ONLY public.categorie
 
 
 --
--- TOC entry 2794 (class 2606 OID 17709)
+-- TOC entry 2795 (class 2606 OID 17945)
 -- Name: limite Limite_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1657,7 +1789,7 @@ ALTER TABLE ONLY public.limite
 
 
 --
--- TOC entry 2796 (class 2606 OID 17711)
+-- TOC entry 2797 (class 2606 OID 17947)
 -- Name: modele_transaction Modele_transaction_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1666,7 +1798,7 @@ ALTER TABLE ONLY public.modele_transaction
 
 
 --
--- TOC entry 2798 (class 2606 OID 17713)
+-- TOC entry 2799 (class 2606 OID 17949)
 -- Name: notification Notification_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1675,7 +1807,7 @@ ALTER TABLE ONLY public.notification
 
 
 --
--- TOC entry 2800 (class 2606 OID 17715)
+-- TOC entry 2801 (class 2606 OID 17951)
 -- Name: options Options_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1684,7 +1816,7 @@ ALTER TABLE ONLY public.options
 
 
 --
--- TOC entry 2802 (class 2606 OID 17717)
+-- TOC entry 2803 (class 2606 OID 17953)
 -- Name: pays Pays_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1693,7 +1825,7 @@ ALTER TABLE ONLY public.pays
 
 
 --
--- TOC entry 2806 (class 2606 OID 17719)
+-- TOC entry 2807 (class 2606 OID 17955)
 -- Name: recurence Recurence_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1702,7 +1834,7 @@ ALTER TABLE ONLY public.recurence
 
 
 --
--- TOC entry 2810 (class 2606 OID 17721)
+-- TOC entry 2811 (class 2606 OID 17957)
 -- Name: sous_categorie Sous-categorie_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1711,7 +1843,7 @@ ALTER TABLE ONLY public.sous_categorie
 
 
 --
--- TOC entry 2814 (class 2606 OID 17723)
+-- TOC entry 2815 (class 2606 OID 17959)
 -- Name: statut Statut_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1720,7 +1852,7 @@ ALTER TABLE ONLY public.statut
 
 
 --
--- TOC entry 2818 (class 2606 OID 17725)
+-- TOC entry 2819 (class 2606 OID 17961)
 -- Name: transaction Transaction_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1729,7 +1861,7 @@ ALTER TABLE ONLY public.transaction
 
 
 --
--- TOC entry 2820 (class 2606 OID 17727)
+-- TOC entry 2821 (class 2606 OID 17963)
 -- Name: type_transaction Type_transaction_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1738,7 +1870,7 @@ ALTER TABLE ONLY public.type_transaction
 
 
 --
--- TOC entry 2824 (class 2606 OID 17729)
+-- TOC entry 2825 (class 2606 OID 17965)
 -- Name: utilisateur Utilisateur_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1747,7 +1879,7 @@ ALTER TABLE ONLY public.utilisateur
 
 
 --
--- TOC entry 2830 (class 2606 OID 17731)
+-- TOC entry 2831 (class 2606 OID 17967)
 -- Name: droit droit_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1756,7 +1888,7 @@ ALTER TABLE ONLY public.droit
 
 
 --
--- TOC entry 2826 (class 2606 OID 17733)
+-- TOC entry 2827 (class 2606 OID 17969)
 -- Name: utilisateur emailUnique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1765,7 +1897,7 @@ ALTER TABLE ONLY public.utilisateur
 
 
 --
--- TOC entry 2792 (class 2606 OID 17735)
+-- TOC entry 2793 (class 2606 OID 17971)
 -- Name: categorie nomCategorieUnique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1774,7 +1906,7 @@ ALTER TABLE ONLY public.categorie
 
 
 --
--- TOC entry 2832 (class 2606 OID 17737)
+-- TOC entry 2833 (class 2606 OID 17973)
 -- Name: droit nomDroitUnique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1783,7 +1915,7 @@ ALTER TABLE ONLY public.droit
 
 
 --
--- TOC entry 2812 (class 2606 OID 17739)
+-- TOC entry 2813 (class 2606 OID 17975)
 -- Name: sous_categorie nomEtIdUniqueSousCat; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1792,7 +1924,7 @@ ALTER TABLE ONLY public.sous_categorie
 
 
 --
--- TOC entry 2804 (class 2606 OID 17741)
+-- TOC entry 2805 (class 2606 OID 17977)
 -- Name: pays nomPaysUnique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1801,7 +1933,7 @@ ALTER TABLE ONLY public.pays
 
 
 --
--- TOC entry 2816 (class 2606 OID 17743)
+-- TOC entry 2817 (class 2606 OID 17979)
 -- Name: statut nomStatutUnique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1810,7 +1942,7 @@ ALTER TABLE ONLY public.statut
 
 
 --
--- TOC entry 2808 (class 2606 OID 17745)
+-- TOC entry 2809 (class 2606 OID 17981)
 -- Name: recurence periodiciteUnique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1819,7 +1951,7 @@ ALTER TABLE ONLY public.recurence
 
 
 --
--- TOC entry 2828 (class 2606 OID 17747)
+-- TOC entry 2829 (class 2606 OID 17983)
 -- Name: utilisateur pseudoUnique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1828,7 +1960,7 @@ ALTER TABLE ONLY public.utilisateur
 
 
 --
--- TOC entry 2834 (class 2606 OID 17749)
+-- TOC entry 2835 (class 2606 OID 17985)
 -- Name: test test_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1837,7 +1969,7 @@ ALTER TABLE ONLY public.test
 
 
 --
--- TOC entry 2822 (class 2606 OID 17751)
+-- TOC entry 2823 (class 2606 OID 17987)
 -- Name: type_transaction typeTransactionUnique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1846,7 +1978,7 @@ ALTER TABLE ONLY public.type_transaction
 
 
 --
--- TOC entry 2852 (class 2620 OID 17752)
+-- TOC entry 2853 (class 2620 OID 17988)
 -- Name: modele_transaction createTransaction; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -1854,7 +1986,24 @@ CREATE TRIGGER "createTransaction" AFTER INSERT ON public.modele_transaction FOR
 
 
 --
--- TOC entry 2853 (class 2620 OID 17753)
+-- TOC entry 2854 (class 2620 OID 17989)
+-- Name: transaction limit; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "limit" AFTER INSERT ON public.transaction FOR EACH ROW EXECUTE PROCEDURE public.check_limits();
+
+
+--
+-- TOC entry 3046 (class 0 OID 0)
+-- Dependencies: 2854
+-- Name: TRIGGER "limit" ON transaction; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TRIGGER "limit" ON public.transaction IS 'checks limits';
+
+
+--
+-- TOC entry 2855 (class 2620 OID 17990)
 -- Name: transaction soldeModifExpense; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -1862,7 +2011,7 @@ CREATE TRIGGER "soldeModifExpense" BEFORE INSERT ON public.transaction FOR EACH 
 
 
 --
--- TOC entry 2854 (class 2620 OID 17754)
+-- TOC entry 2856 (class 2620 OID 17991)
 -- Name: transaction soldeModifIncome; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -1870,7 +2019,7 @@ CREATE TRIGGER "soldeModifIncome" AFTER INSERT ON public.transaction FOR EACH RO
 
 
 --
--- TOC entry 2844 (class 2606 OID 17755)
+-- TOC entry 2845 (class 2606 OID 17992)
 -- Name: sous_categorie categorie_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1879,7 +2028,7 @@ ALTER TABLE ONLY public.sous_categorie
 
 
 --
--- TOC entry 2835 (class 2606 OID 17760)
+-- TOC entry 2836 (class 2606 OID 17997)
 -- Name: limite categorie_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1888,7 +2037,7 @@ ALTER TABLE ONLY public.limite
 
 
 --
--- TOC entry 2846 (class 2606 OID 17765)
+-- TOC entry 2847 (class 2606 OID 18002)
 -- Name: utilisateur droit_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1897,7 +2046,7 @@ ALTER TABLE ONLY public.utilisateur
 
 
 --
--- TOC entry 2845 (class 2606 OID 17770)
+-- TOC entry 2846 (class 2606 OID 18007)
 -- Name: transaction modele_transaction_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1906,7 +2055,7 @@ ALTER TABLE ONLY public.transaction
 
 
 --
--- TOC entry 2847 (class 2606 OID 17775)
+-- TOC entry 2848 (class 2606 OID 18012)
 -- Name: utilisateur options_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1915,7 +2064,7 @@ ALTER TABLE ONLY public.utilisateur
 
 
 --
--- TOC entry 2848 (class 2606 OID 17780)
+-- TOC entry 2849 (class 2606 OID 18017)
 -- Name: utilisateur pays_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1924,7 +2073,7 @@ ALTER TABLE ONLY public.utilisateur
 
 
 --
--- TOC entry 2836 (class 2606 OID 17785)
+-- TOC entry 2837 (class 2606 OID 18022)
 -- Name: limite recurence_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1933,7 +2082,7 @@ ALTER TABLE ONLY public.limite
 
 
 --
--- TOC entry 2839 (class 2606 OID 17790)
+-- TOC entry 2840 (class 2606 OID 18027)
 -- Name: modele_transaction recurence_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1942,7 +2091,7 @@ ALTER TABLE ONLY public.modele_transaction
 
 
 --
--- TOC entry 2837 (class 2606 OID 17795)
+-- TOC entry 2838 (class 2606 OID 18032)
 -- Name: limite sous_categorie_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1951,7 +2100,7 @@ ALTER TABLE ONLY public.limite
 
 
 --
--- TOC entry 2840 (class 2606 OID 17800)
+-- TOC entry 2841 (class 2606 OID 18037)
 -- Name: modele_transaction sous_categorie_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1960,7 +2109,7 @@ ALTER TABLE ONLY public.modele_transaction
 
 
 --
--- TOC entry 2850 (class 2606 OID 17805)
+-- TOC entry 2851 (class 2606 OID 18042)
 -- Name: sous_categories_personnelles sous_categorie_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1969,7 +2118,7 @@ ALTER TABLE ONLY public.sous_categories_personnelles
 
 
 --
--- TOC entry 2849 (class 2606 OID 17810)
+-- TOC entry 2850 (class 2606 OID 18047)
 -- Name: utilisateur statut_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1978,7 +2127,7 @@ ALTER TABLE ONLY public.utilisateur
 
 
 --
--- TOC entry 2841 (class 2606 OID 17815)
+-- TOC entry 2842 (class 2606 OID 18052)
 -- Name: modele_transaction type_transaction_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1987,7 +2136,7 @@ ALTER TABLE ONLY public.modele_transaction
 
 
 --
--- TOC entry 2843 (class 2606 OID 17820)
+-- TOC entry 2844 (class 2606 OID 18057)
 -- Name: notification utilisateur_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1996,7 +2145,7 @@ ALTER TABLE ONLY public.notification
 
 
 --
--- TOC entry 2838 (class 2606 OID 17825)
+-- TOC entry 2839 (class 2606 OID 18062)
 -- Name: limite utilisateur_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2005,7 +2154,7 @@ ALTER TABLE ONLY public.limite
 
 
 --
--- TOC entry 2842 (class 2606 OID 17830)
+-- TOC entry 2843 (class 2606 OID 18067)
 -- Name: modele_transaction utilisateur_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2014,7 +2163,7 @@ ALTER TABLE ONLY public.modele_transaction
 
 
 --
--- TOC entry 2851 (class 2606 OID 17835)
+-- TOC entry 2852 (class 2606 OID 18072)
 -- Name: sous_categories_personnelles utilisateur_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2023,15 +2172,15 @@ ALTER TABLE ONLY public.sous_categories_personnelles
 
 
 --
--- TOC entry 3014 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 3017 (class 0 OID 0)
+-- Dependencies: 242
 -- Name: FUNCTION "transactionCreation"(); Type: ACL; Schema: public; Owner: postgres
 --
 
 REVOKE ALL ON FUNCTION public."transactionCreation"() FROM postgres;
 
 
--- Completed on 2019-05-15 15:26:21
+-- Completed on 2019-05-20 13:06:41
 
 --
 -- PostgreSQL database dump complete

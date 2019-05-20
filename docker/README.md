@@ -27,7 +27,7 @@
     
     Elles permettent de préparer les fichiers de l'application pour docker.
 
-4. Lancement de l'application
+4. Lancement de l'application sur le serveur
 
     Ouvrir docker dans le répertoire ```docker/app/``` et taper la commande ```docker-compose up```. Cette commande va appeler le fichier docker-compose.yml ainsi que Dockerfile. L'application va tourner en production sous docker.
     
