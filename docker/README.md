@@ -2,7 +2,7 @@
 
 ## Application
 
-1. Modification des fichiers (à définir)
+1. Modification des fichiers
 
     Il faut modifier l'URL du fichier app\controllers\BDDpackage\BDD.java par ```private String url = jdbc:postgresql://postgres/BD_Budget``` 
 
@@ -27,7 +27,7 @@
     
     Elles permettent de préparer les fichiers de l'application pour docker.
     
-    **Ajouter ```rm /svc/RUNNING_PID``` au début du fichier /files/bin/start.** Ce permet le redémarrage de l'application
+    Il faut encore **ajouter ```rm /svc/RUNNING_PID``` au début du fichier /files/bin/start.** Ce permet le redémarrage de l'application
     
 4. Base de données
 
